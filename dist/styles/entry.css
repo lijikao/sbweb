@@ -926,29 +926,29 @@ button.signupbtn{
 #content {
   background: url("../assets/entry/login-bg.png") center no-repeat;
   background-size: cover;
-  height: "calc( 100vh - 60px - 78px)";
+  height: calc( 100vh - 60px - 78px);
   position: relative;
   overflow: hidden;
 }
-#loginAdv {
+#login-adv {
   width: calc(100% - 700px);
   height: 100%;
   font-size: 0;
   line-height: 100vh;
 }
-#loginAdv .mainInfo {
+#login-adv .main-info {
   display: inline-block;
   padding-left: 200px;
   vertical-align: middle;
   line-height: 1rem;
 }
-#loginAdv h3 {
+#login-adv h3 {
   font-size: 48px;
   color: #000000;
   line-height: 60px;
   margin-bottom: 20px;
 }
-#loginAdv p {
+#login-adv p {
   font-size: 20px;
   color: #000000;
   line-height: 36px;
@@ -975,13 +975,16 @@ button.signupbtn{
   margin-bottom: 20px;
 }
 #login-form .form-group input {
-  font-size: 14px;
-  color: #999999;
+  font-size: 12px;
+  color: #000;
   letter-spacing: 0;
   line-height: 20px;
   height: 40px;
   border: 1px solid #d6d6d6;
   border-radius: 2px;
+}
+#login-form .form-group input.input {
+  padding-left: 10px;
 }
 #login-form .checkbox {
   font-size: 12px;
@@ -999,8 +1002,9 @@ button.signupbtn{
   display: inline-block;
   background: #ffffff;
   border: 1px solid #d6d6d6;
-  vertical-align: middle;
+  vertical-align: sub;
   margin-right: 5px;
+  transition: all 0.3s;
 }
 #login-form .s-checkbox.active {
   background: url("../assets/entry/checkbox-avtive.svg") center no-repeat;
@@ -1015,7 +1019,7 @@ button.signupbtn{
   color: #324795;
   line-height: 20px;
 }
-#login-form button[type="submit"] {
+#login-form .submit[type="submit"] {
   background: #7290f2;
   border-radius: 2px;
   height: 40px !important;
@@ -1038,15 +1042,202 @@ button.signupbtn{
   height: 100%;
 }
 .register-container .register-box {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
   height: 100%;
   display: flex;
+  align-items: center;
 }
 .register-container #register-form {
   width: 400px;
   display: block;
   margin: 0 auto;
+}
+#register-form .login-title {
+  font-size: 24px;
+  color: #000000;
+  line-height: 29px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+#register-form .form-group {
+  position: relative;
+}
+#register-form .form-group em {
+  font-style: normal;
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+#register-form .form-group input {
+  width: 320px;
+  display: inline-block;
+  padding-left: 20px;
+  font-size: 12px;
+  color: #000;
+}
+#register-form .form-group input.input {
+  padding-left: 10px;
+}
+#register-form .form-group input:focus {
+  border: 1px solid #7290F2;
+  box-shadow: none;
+}
+#register-form .input-group {
+  width: 320px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#register-form .input-group .input-group-addon {
+  background: #fff;
+  width: 42px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #999999;
+  padding: 0;
+  display: inline-block;
+  float: left;
+}
+#register-form .input-group input {
+  width: calc(320px - 42px);
+  float: left;
+}
+#register-form .code-verification input {
+  width: 194px;
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+#register-form .code-verification .btn {
+  border: 1px solid #7290f2;
+  border-radius: 2px;
+  height: 40px !important;
+  vertical-align: middle;
+  font-size: 14px !important;
+  color: #7290f2;
+  width: 116px !important;
+  padding: 8px 10px 8px 10px;
+}
+#register-form .code-verification .btn:active,
+#register-form .code-verification .btn:focus {
+  box-shadow: none;
+}
+#register-form .submit[type="submit"] {
+  background: #cccccc;
+  border-radius: 2px;
+  height: 40px !important;
+  width: 320px !important;
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 10px;
+}
+#register-form .help-block {
+  font-size: 12px;
+  color: #999999;
+  line-height: 20px;
+}
+#register-form .input-status {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+#register-form .status-info {
+  font-size: 12px;
+  color: #cd454a;
+  line-height: 18px;
+  padding-top: 5px;
+  display: none;
+}
+#register-form .form-group[data-status="success"] .input-status {
+  background: url("../assets/entry/status-success.svg") center no-repeat;
+}
+#register-form .form-group[data-status="false"] .input-status {
+  background: url("../assets/entry/status-false.svg") center no-repeat;
+}
+#register-form .form-group[data-status="false"] .status-info {
+  display: block;
+}
+#register-form .form-group[data-status="false"] input {
+  border: 1px solid #cd454a;
+}
+#register-form .form-group[data-status="default"] input {
+  color: #cd454a;
+  border: 1px solid #cd454a;
+}
+#register-form .status-tips {
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 335px;
+  background: #ffffff;
+  box-shadow: 0 7px 15px 0 rgba(218, 218, 218, 0.5);
+  border-radius: 3px;
+  border: 1px solid #d6d6d6;
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  z-index: 10;
+}
+#register-form .status-tips .strength p {
+  font-size: 12px;
+  color: #666666;
+  text-align: center;
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+#register-form .status-tips .strength .strength-box {
+  display: inline-block;
+  margin-right: 9px;
+}
+#register-form .status-tips .strength .strength-box span {
+  display: inline-block;
+  width: 30px;
+  height: 10px;
+  background: #d8d8d8;
+  float: left;
+  margin-right: 1px;
+}
+#register-form .status-tips .strength .strength-box[data-status="low"] span:nth-child(1) {
+  background: #CD454A;
+}
+#register-form .status-tips .strength .strength-info {
+  font-size: 12px;
+  color: #cd454a;
+}
+#register-form .status-tips .strength-status {
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 10px;
+}
+#register-form .status-tips .strength-status span {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: sub;
+}
+#register-form .status-tips .strength-status[data-status="success"] span {
+  background: url("../assets/entry/strength-success.svg") center no-repeat;
+  background-size: 100% 100%;
+}
+#register-form .status-tips .strength-status[data-status="false"] span {
+  background: url("../assets/entry/strength-false.svg") center no-repeat;
+  background-size: 100% 100%;
+}
+#register-form .status-tips.tipShow {
+  opacity: 1;
+  visibility: visible;
 }
 footer {
   height: 77px;
