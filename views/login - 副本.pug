@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title login page
+
+    block styles
+      link(href='images/farvirate.ico', rel='shortcut icon', type='image/icon')
+      link(type='text/css' rel="stylesheet" href='styles/entry.css')
+
+    script(type='text/javascript').
+      var g_BACKEND_API_BASE_URL = '#{backendBaseUrl}';
+
+    block append scripts
+        script(type='text/javascript', src='js/base.js')    
+        script(type='text/javascript', src='js/entry.js')
+  body
+    #pagewrap
+      .topbar
+        .brand-logo
+          img(src='assets/logo-white.png')
+        .topbar-nav
+          button.btn-language(type='button' v-on:click="onLangButtonClicked" v-bind:class="[('cn' === viewState.lang) ? 'btn-lan-en' : 'btn-lan-zh']")
+      // /topbar
+      #content
+        #login-adv
+          .main-info
+            h3 Brand Intelligence & Brand Protection
+            p Making digital commerce trustworthy through big data, AI and blockchain
+        #login-form
+          h2.login-title Log in
+          form
+            .form-group
+              input.form-control(type="text" id="exampleInputName2" placeholder="Jane Doe")
+            .form-group
+                input.form-control(type="password" class="form-control" placeholder="Password")
+            .checkbox
+              label
+                span.s-checkbox(class="active" type="checkbox")
+                | Remember me
+              p.forget-password
+                a(href='#') Forget Password ?
+            .form-group
+            button(type="submit" class="submit btn btn-default") Sign in 
+            p.help-block Don’t have an account?
+              a(href='#') Sign up
+      // /container
+      footer
+        p.footer-info Copyright © 2016 - 2028 Beschannels. All Rights Reserved 京ICP备17006100号
+      // /footer
+    // #pagewrap
+    </div>
