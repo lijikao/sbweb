@@ -70,7 +70,7 @@ function packAppJs(){
 
 function packEntryJs(){
     return gulp.src([
-        'scripts/index.js'
+        'scripts/entry.js'
     ])
     .pipe(concat('entry.js'))
     .pipe(gulp.dest('dist/js/'));

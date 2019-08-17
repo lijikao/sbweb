@@ -17,24 +17,40 @@
         <div class="register-container">
             <div class="register-box">
                     <div id="register-form">
-                            <h2 class="login-title">Log in</h3>
+                            <h2 class="login-title">Sign up</h3>
                             <form>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                                        <em style="color: red;">*</em>
+                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Account name">
                                 </div>
                                 <div class="form-group">
+                                        <em style="color: red;">*</em>
+                                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Email address">
+                                    </div>
+                                    <div class="form-group">
+                                            <em style="color: red;">*</em>
+                                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Company name">
+                                        </div>
+                                <div class="form-group">
+                                        <em style="color: red;">*</em>
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
-                                <div class="checkbox">
-                                <label>
-                                    <span class="s-checkbox active" type="checkbox"></span> Remember me
-                                </label>
-                                <p class="forget-password"><a href="#">Forget Password ?</a>  </p>
+                                <div class="form-group">
+                                        <em style="color: red;">*</em>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
                                 </div>
                                 <div class="form-group">
-                                
+                                        <div class="input-group">
+                                            <div class="input-group-addon">#86</div>
+                                            <input type="password" class="form-control" id="exampleInputAmount" placeholder="Mobile number">
+                                        </div>
                                 </div>
-                                <button type="submit" class="btn btn-default">Sign in</button>
+                                <div class="form-group code-verification">
+                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Verification code">
+                                    <button type="submit" class="btn btn-default">Get code</button>
+                                </div>
+                                
+                                <button type="submit" class="submit btn btn-default">Sign in</button>
                                 <p class="help-block">Don’t have an account? <a href="#">Sign up</a>  </p>
                             </form>
                     </div>

@@ -100,7 +100,7 @@
   }
 }
 
-#login-form button[type="submit"] {
+#login-form .submit[type="submit"] {
   background: #7290f2;
   border-radius: 2px;
   height: 40px !important;
@@ -124,20 +124,99 @@
 
 .register-container {
   padding: 60px 170px;
-  height:100%;
+  height: 100%;
   .register-box {
-    background: #FFFFFF;
-    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.06);
-    height:100%;
+    background: #ffffff;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
+    height: 100%;
     display: flex;
+    align-items: center;
   }
 }
 .register-container #register-form {
-    width: 400px;
-    display: block;
-    margin: 0 auto;
+  width: 400px;
+  display: block;
+  margin: 0 auto;
 }
 
+#register-form .login-title {
+  font-size: 24px;
+  color: #000000;
+  line-height: 29px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+#register-form .form-group {
+  position: relative;
+}
+
+#register-form .form-group em {
+  font-style: normal;
+  position: absolute;
+  left: 10px;
+  top: 14px;
+}
+
+#register-form .form-group input {
+  width: 320px;
+  display: inline-block;
+  padding-left: 20px;
+}
+
+#register-form .input-group {
+    width: 320px;
+  .input-group-addon {
+    background: #fff;
+    width: 42px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #999999;
+    padding: 0;
+  }
+  input {
+      width:~"calc(320px - 42px)";
+  }
+}
+
+#register-form .code-verification {
+  input {
+    width: 194px;
+    margin-right: 6px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .btn {
+    border: 1px solid #7290f2;
+    border-radius: 2px;
+    height: 40px !important;
+    vertical-align: middle;
+    font-size: 14px !important;
+    color: #7290f2;
+    width: 116px !important;
+  }
+}
+
+#register-form .submit[type="submit"] {
+  background: #cccccc;
+  border-radius: 2px;
+  height: 40px !important;
+  width: 320px !important;
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+#register-form .help-block {
+  font-size: 12px;
+  color: #999999;
+  line-height: 20px;
+}
 //footer
 footer {
   height: 77px;
