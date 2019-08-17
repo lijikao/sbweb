@@ -17,37 +17,65 @@
         <div class="register-container">
             <div class="register-box">
                     <div id="register-form">
-                            <h2 class="login-title">Sign up</h3>
+                            <h2 class="login-title">Sign up</h2>
                             <form>
-                                <div class="form-group">
-                                        <em style="color: red;">*</em>
+                                <div class="form-group" data-status="success">
+                                        <em style="color: #CD454A;">*</em>
                                     <input type="text" class="form-control" id="exampleInputName2" placeholder="Account name">
+                                        <span class="input-status"></span>
+                                        <p class="status-info">Username is 5-25 characters and needs to contain letters.</p>
                                 </div>
-                                <div class="form-group">
-                                        <em style="color: red;">*</em>
+                                <div class="form-group" data-status="success">
+                                        <em style="color: #CD454A;">*</em>
                                         <input type="text" class="form-control" id="exampleInputName2" placeholder="Email address">
+                                        <span class="input-status"></span>
+                                        <p class="status-info">Username is 5-25 characters and needs to contain letters.</p>
                                     </div>
-                                    <div class="form-group">
-                                            <em style="color: red;">*</em>
+                                    <div class="form-group" data-status="success">
+                                            <em style="color: #CD454A;">*</em>
                                             <input type="text" class="form-control" id="exampleInputName2" placeholder="Company name">
+                                            <span class="input-status"></span>
+                                            <p class="status-info">Username is 5-25 characters and needs to contain letters.</p>
                                         </div>
-                                <div class="form-group">
-                                        <em style="color: red;">*</em>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <div class="form-group" data-status="false">
+                                        <em style="color: #CD454A;">*</em>
+                                <input type="password" class="form-control" id="registerPassword1" placeholder="Password">
+                                        <span class="input-status"></span>
+                                        <p class="status-info">Username is 5-25 characters and needs to contain letters.</p>
+                                        <div class="status-tips">
+                                                <div class="strength">
+                                                    <p>Strength</p>
+                                                    <div class="strength-box" data-status="low">
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <p class="strength-info">Low</p>
+                                                </div>
+                                                <p class="strength-status" data-status="success"><span></span>5 to 25 charcters </p>
+                                                <p class="strength-status" data-status="false"><span></span>Contains only letters,numbers and symbols </p>
+                                                <p class="strength-status" data-status="success"><span></span>Contains at least two of the following: letters,numbers,symbols. </p>
+                                            </div>
                                 </div>
-                                <div class="form-group">
-                                        <em style="color: red;">*</em>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+                                <div class="form-group" data-status="false">
+                                        <em style="color: #CD454A;">*</em>
+                                        <input type="password" class="form-control" id="registerPassword2" placeholder="Confirm Password">
+                                        <span class="input-status"></span>
+                                        <p class="status-info">Username is 5-25 characters and needs to contain letters.</p>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" data-status="false">
                                         <div class="input-group">
                                             <div class="input-group-addon">#86</div>
                                             <input type="password" class="form-control" id="exampleInputAmount" placeholder="Mobile number">
                                         </div>
+                                            <span class="input-status"></span>
+                                            <p class="status-info">Username is 5-25 characters and needs to contain letters.</p>
                                 </div>
-                                <div class="form-group code-verification">
-                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Verification code">
-                                    <button type="submit" class="btn btn-default">Get code</button>
+                                <div class="form-group code-verification" data-status="false">
+                                    <input type="text" class="form-control" id="exampleInputPassword3" placeholder="Verification code">
+                                    <button type="button" class="btn btn-default">Get code</button>
+                                    <span class="input-status"></span>
+                                    <p class="status-info">Username is 5-25 characters and needs to contain letters.</p>
                                 </div>
                                 
                                 <button type="submit" class="submit btn btn-default">Sign in</button>
@@ -61,5 +89,76 @@
     <footer>
             <p class="footer-info">Copyright © 2016 - 2028 Beschannels. All Rights Reserved 京ICP备17006100号</p>
         </footer>
+
+
+
+        <script>
+        var methods={
+            // input输入去除*
+            inputDelTip :function(ele){
+                ele.each(function(index,item){
+                    $(item).on("input",function(){
+                        $(this).addClass('input').siblings('em').hide(0);
+                    })
+                })
+            },
+             // input添加去除*
+             inputAddTip :function(ele){
+                ele.each(function(index,item){
+                    $(item).on("input",function(){
+                        console.log($(this).val())
+                        if($(this).val() == "")$(this).removeClass('input').siblings('em').show(0);
+                    })
+                })
+            },
+            //input失去光标事件
+            inputUnfocus :function(ele){
+                ele.each(function(index,item){
+                    $(item).on("blur",function(){
+                        console.log(1);
+                    })
+                })
+            },
+            //密码验证tip出现隐藏
+            passwordTips:function(ele){
+                ele
+                .on("focus",function(){
+                    $(this).siblings('.status-tips').addClass('tipShow');
+                })
+                .on("blur",function(){
+                    $(this).siblings('.status-tips').removeClass('tipShow');
+                })
+            },
+            //get code 按钮修改文案
+            getCode:function(ele){
+                ele.on("click",function(){
+                var num = 60,str=null;
+                  var  interval =  setInterval(function(){
+                        ele.prop('disabled', true);
+                        num--;
+                        str = "Resend in "+ num +"s";
+                        ele.html(str);
+                        if(num < 0){
+                            ele.html('get code');
+                            ele.prop('disabled', false);
+                            clearInterval(interval);   
+                        }
+                    },100)
+                })
+            }
+        }
+        
+        methods.inputDelTip($('#register-form input'))
+        methods.inputAddTip($('#register-form input'))
+        methods.inputUnfocus($('#register-form input'))
+        methods.passwordTips($('#register-form #registerPassword1'))
+        methods.getCode($('#register-form .code-verification .btn'))
+        
+        
+        
+        
+        
+        </script>
+
 </body>
 </html>

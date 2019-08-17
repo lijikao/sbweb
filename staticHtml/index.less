@@ -8,12 +8,12 @@
 
 // login
 
-#loginAdv {
+#login-adv {
   width: ~"calc(100% - 700px)";
   height: 100%;
   font-size: 0;
   line-height: 100vh;
-  .mainInfo {
+  .main-info {
     display: inline-block;
     padding-left: 200px;
     vertical-align: middle;
@@ -56,13 +56,16 @@
   margin-bottom: 20px;
 }
 #login-form .form-group input {
-  font-size: 14px;
-  color: #999999;
+  font-size: 12px;
+  color: #000;
   letter-spacing: 0;
   line-height: 20px;
   height: 40px;
   border: 1px solid #d6d6d6;
   border-radius: 2px;
+  &.input {
+    padding-left: 10px;
+  }
 }
 
 #login-form .checkbox {
@@ -82,8 +85,9 @@
   display: inline-block;
   background: #ffffff;
   border: 1px solid #d6d6d6;
-  vertical-align: middle;
+  vertical-align: sub;
   margin-right: 5px;
+  transition: all 0.3s;
   &.active {
     background: url("./checkbox-avtive.svg") center no-repeat;
     background-size: 100% 100%;
@@ -155,17 +159,28 @@
   font-style: normal;
   position: absolute;
   left: 10px;
-  top: 14px;
+  top: 12px;
 }
 
 #register-form .form-group input {
   width: 320px;
   display: inline-block;
   padding-left: 20px;
+  font-size: 12px;
+  color: #000;
+  &.input {
+    padding-left: 10px;
+  }
+  &:focus {
+    border: 1px solid #7290F2;
+    box-shadow: none;
+  }
 }
 
 #register-form .input-group {
-    width: 320px;
+  width: 320px;
+  display: inline-block;
+  vertical-align: middle;
   .input-group-addon {
     background: #fff;
     width: 42px;
@@ -174,9 +189,12 @@
     font-size: 14px;
     color: #999999;
     padding: 0;
+    display: inline-block;
+    float: left;
   }
   input {
-      width:~"calc(320px - 42px)";
+    width: ~"calc(320px - 42px)";
+    float: left;
   }
 }
 
@@ -186,6 +204,7 @@
     margin-right: 6px;
     display: inline-block;
     vertical-align: middle;
+    padding-left:10px; 
   }
   .btn {
     border: 1px solid #7290f2;
@@ -195,6 +214,10 @@
     font-size: 14px !important;
     color: #7290f2;
     width: 116px !important;
+    padding: 8px 10px 8px 10px;
+    &:active,&:focus {
+        box-shadow: none;
+    }
   }
 }
 
@@ -217,6 +240,112 @@
   color: #999999;
   line-height: 20px;
 }
+
+//register status
+#register-form .input-status {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+#register-form .status-info {
+  font-size: 12px;
+  color: #cd454a;
+  line-height: 18px;
+  padding-top: 5px;
+  display: none;
+}
+#register-form .form-group {
+  &[data-status="success"] .input-status {
+    background: url("./status-success.svg") center no-repeat;
+  }
+  &[data-status="false"] .input-status {
+    background: url("./status-false.svg") center no-repeat;
+  }
+  &[data-status="false"] .status-info {
+    display: block;
+  }
+  &[data-status="false"] input {
+    border: 1px solid #cd454a;
+  }
+  &[data-status="default"] input {
+    color: #cd454a;
+    border: 1px solid #cd454a;
+  }
+}
+#register-form .status-tips {
+  width: 280px;
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+  left:335px;
+  background: #ffffff;
+  box-shadow: 0 7px 15px 0 rgba(218, 218, 218, 0.5);
+  border-radius: 3px;
+  border: 1px solid #d6d6d6;
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s;
+  .strength {
+    p {
+      font-size: 12px;
+      color: #666666;
+      text-align: center;
+      display: inline-block;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+    .strength-box {
+      display: inline-block;
+      margin-right: 9px;
+      span {
+        display: inline-block;
+        width: 30px;
+        height: 10px;
+        background: #d8d8d8;
+        float: left;
+        margin-right: 1px;
+      }
+      &[data-status="low"] {
+        span:nth-child(1) {
+            background: #CD454A;
+        }
+    }
+    }
+    .strength-info {
+      font-size: 12px;
+      color: #cd454a;
+    }
+  }
+  .strength-status {
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 10px;
+
+    span {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: sub;
+    }
+    &[data-status="success"] span {
+      background: url("./strength-success.svg") center no-repeat;
+      background-size: 100% 100%;
+    }
+    &[data-status="false"] span {
+      background: url("./strength-false.svg") center no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  &.tipShow {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 //footer
 footer {
   height: 77px;
