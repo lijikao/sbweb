@@ -1,0 +1,7 @@
+#content {
+  background: url('login-bg.png') center no-repeat;
+  height: 100vh;
+}
+#login-form {
+  width: 400px;
+}
