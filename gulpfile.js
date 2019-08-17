@@ -37,7 +37,7 @@ function packBaseStyles(){
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/daterangepicker/daterangepicker.css',
         'styles/main.css',
-        "styles/site.css"
+        "styles/site.css",
     ])
     .pipe(concat('base.css'))
     //.pipe(copyassets())
@@ -68,12 +68,31 @@ function packAppJs(){
     .pipe(gulp.dest('dist/js/'));
 }
 
-const build = gulp.series(compileLess, packBaseJs, packBaseStyles, packAppJs, watchFiles);
+function packEntryJs(){
+    return gulp.src([
+        'scripts/index.js'
+    ])
+    .pipe(concat('entry.js'))
+    .pipe(gulp.dest('dist/js/'));
+}
+function packEntryStyles(){
+    return gulp.src([
+        'styles/main.css',
+        'styles/entry.css'
+    ])
+    .pipe(concat('entry.css'))
+    //.pipe(copyassets())
+    .pipe(gulp.dest('dist/styles/'))
+}
+
+const build = gulp.series(compileLess, packBaseJs, packBaseStyles, packAppJs,packEntryJs, packEntryStyles, watchFiles);
 
 
 function watchFiles(){
     gulp.watch('vues/**/*', packAppJs);
     gulp.watch('scripts/**/*', packAppJs);
+    gulp.watch('scripts/**/*', packEntryJs);
+    gulp.watch('styles/**/*.css', packEntryStyles);
     gulp.watch('styles/**/*.less', compileLess);
     gulp.watch('styles/**/*.css', packBaseStyles);
     gulp.watch('gulpfile.js', build);

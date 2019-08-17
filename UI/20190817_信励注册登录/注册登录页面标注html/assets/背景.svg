@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="1020px" viewBox="0 0 1920 1020" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>背景</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1920" height="1020"></rect>
+        <linearGradient x1="100%" y1="-2.22044605e-14%" x2="3.33066907e-14%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#E5585E" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="97.1888548%" y2="97.1888548%" id="linearGradient-4">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#CD454A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="100%" x2="2.78762837%" y2="4.43499302%" id="linearGradient-5">
+            <stop stop-color="#6CACE6" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#7290F2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="登录页" transform="translate(0.000000, -60.000000)">
+            <g id="背景" transform="translate(0.000000, 60.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#F6F6F6" xlink:href="#path-1"></use>
+                <rect id="Rectangle" fill="url(#linearGradient-3)" mask="url(#mask-2)" transform="translate(306.073773, 1041.073773) rotate(45.000000) translate(-306.073773, -1041.073773) " x="-156.426227" y="578.573773" width="925" height="925" rx="4"></rect>
+                <rect id="Rectangle" fill="url(#linearGradient-4)" opacity="0.5" mask="url(#mask-2)" transform="translate(1888.877813, 825.877813) rotate(45.000000) translate(-1888.877813, -825.877813) " x="1482.37781" y="419.377813" width="813" height="813" rx="4"></rect>
+                <rect id="Rectangle" fill="url(#linearGradient-5)" opacity="0.5" mask="url(#mask-2)" transform="translate(791.252488, -4.747512) rotate(45.000000) translate(-791.252488, 4.747512) " x="231.752488" y="-564.247512" width="1119" height="1119" rx="4"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
