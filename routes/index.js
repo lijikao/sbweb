@@ -12,7 +12,7 @@ router.get("/login",function(req,res,next){
   res.render("login",{title:'User Login'});
 })
 
-/* GET login page. */
+/* GET register page. */
 router.get("/register",function(req,res,next){
   res.render("register",{title:'User Register'});
 })

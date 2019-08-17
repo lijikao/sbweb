@@ -70,13 +70,14 @@ function packAppJs(){
 
 function packEntryJs(){
     return gulp.src([
-        'scripts/index.js'
+        'scripts/entry.js'
     ])
     .pipe(concat('entry.js'))
     .pipe(gulp.dest('dist/js/'));
 }
 function packEntryStyles(){
     return gulp.src([
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',        
         'styles/main.css',
         'styles/entry.css'
     ])
