@@ -70,6 +70,8 @@ function packAppJs(){
 
 function packEntryJs(){
     return gulp.src([
+        'vues/login.js',
+        'vues/register.js',        
         'scripts/entry.js'
     ])
     .pipe(concat('entry.js'))

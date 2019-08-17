@@ -1,4 +1,54 @@
 (function(){
+    Vue.component('vc-loginwarp', {
+        template: `
+            <div id='content'>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻</div>
+        `,
+        props: ['model', 'locale'],
+        created(){
+            console.log('login page')
+        }
+    });
+})();
+// 
+/* 
+      #content
+        #loginAdv
+          .mainInfo
+            h3 Brand Intelligence & Brand Protection
+            p Making digital commerce trustworthy through big data, AI and blockchain
+        #login-form
+          h2.login-title Log in
+            form
+              .form-group
+                input.form-control(type="text" id="exampleInputName2" placeholder="Jane Doe")
+              .form-group
+                input.form-control(type="password" class="form-control" placeholder="Password")
+              .checkbox
+                label
+                  span.s-checkbox(class="active" type="checkbox")
+                  | Remember me
+                p.forget-password
+                  a(href='#') Forget Password ?
+              .form-group
+              button(type="submit" class="btn btn-default") Sign in 
+              p.help-block Don’t have an account?
+                a(href='#') Sign up
+      // /container
+
+
+*/
+(function(){
+    Vue.component('vc-registerwarp', {
+        template: `
+            <div id='content'>哈哈哈哈</div>
+        `,
+        props: ['model', 'locale'],
+        created(){
+            console.log('registerwarp page')
+        }
+    });
+})();
+(function(){
         let _locales = {
             cn:{
                 entry:{
@@ -11,57 +61,35 @@
                 }
             }
         }    
-        
+        let _localeSources = [
+            {
+                path: '/',
+                source: 'entry.json'
+            }
+        ];
+        let _appViewState = {
+            currentRoute: null,
+            currentTitle: '',
+            lang: 'cn'
+        };
+        let _appViewModel = {
+            // sideMenu: _sidemenuModel,
+            locales: null
+        };
         const routes1 =[{
             path: "/login",
             // redirect: "/CounterfeitProduct"
-        }];
-        const routes2 = _.chain(_sidemenuModel).flatMapDeep(_sidemenu_flattener).filter((en) => {
-            return ((true !== wna.IsNullOrEmpty(en.target)) && (true !== wna.IsNullOrEmpty(en.viewComponent)));
-        }).map((en) => {   
+            component:Vue.component("vc-loginwarp")
+        },
+        {
+            path: "/register",
+            // redirect: "/CounterfeitProduct"
+            component:Vue.component("vc-registerwarp")
+        }
     
-            let localesrc = en.localeSource;
-            if (true !== wna.IsNullOrEmpty(localesrc)){
-                _localeSources.push({
-                    path: '/' + en.target,
-                    source: localesrc
-                });
-            }
-    
-            return {
-                path: '/' + en.target,
-                props: (function(o){
-                    return function(r){
-                        let path = o.target;
-                        let slotProps = {
-                            path
-                        };
-    /*
-                        Object.defineProperty(slotProps, 'locale', {
-                            get: function(){
-                                console.log('---------- locale getter is invoked for ', path);
-                                return _.pick(_appViewModel.locales[_appViewState.lang], ['shared', path]);
-                            }
-                        });
-    */
-                        return slotProps;
-                        /*
-                        let locale = _appViewModel.locales[_appViewState.lang];
-                        locale = _.pick(locale, [o.target, 'shared']);
-                        let path = en.target;
-                        let menu = en.id;
-                        //let ret = { locale }; //{ path: r.path, locale: locale };
-                        //console.log('------- route prop ', ret);
-                        return { path, locale };
-                        */
-    
-                    };
-                })(en),
-                component: Vue.component(en.viewComponent),
-                dataSource: en.dataSource,
-                menuid: en.id
-            };
-        }).value();
+      
+      ];
+        const routes2 = [];
         const routes = routes1.concat(routes2)
         routes.push( {
             path: "/",
@@ -73,6 +101,63 @@
             routes
         });
     
+        function _localesLoader(i, accumulator, callback){
+            if (true === wna.IsNullOrEmpty(_localeSources)){
+                return;
+            }
+            if (i >= _localeSources.length){
+                callback(accumulator);
+                return;
+            }
+    
+            let localesrc = _localeSources[i];
+            let url = ['locales', localesrc.source].join('/');
+    
+            console.log('------------ try loading locale for ', localesrc.path, localesrc.source, _localeSources.length);
+            $.ajax({
+                method: 'GET',
+                url: url,
+                success: function(data){
+                    if (true === wna.IsNullOrEmpty(data)){
+                        throw new Exception("Failed to load locale file", "Locale", localesrc.path);
+                    }
+                    if (true === wna.IsNullOrUndefined(accumulator)){
+                        accumulator = {};
+                    }
+                    if (true === wna.IsNullOrUndefined(accumulator.cn)){
+                        accumulator.cn = {};
+                    }
+                    if (true === wna.IsNullOrUndefined(accumulator.en)){
+                        accumulator.en = {};
+                    }
+    
+                    if (true !== wna.IsNullOrEmpty(data.cn)){
+                        if ('/' === localesrc.path){
+                            _.merge(accumulator.cn, data.cn);
+                        }else{
+                            let entry = {};
+                            entry[localesrc.path] = data.cn;
+                            _.merge(accumulator.cn, entry);
+                        }
+                    }
+    
+                    if (true !== wna.IsNullOrEmpty(data.en)){
+                        if ('/' === localesrc.path){
+                            _.merge(accumulator.en, data.en);
+                        }else{
+                            let entry = {};
+                            entry[localesrc.path] = data.en;
+                            _.merge(accumulator.en, entry);
+                        }
+                    }
+    
+                    return _localesLoader(++i, accumulator, callback);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    throw new Exception("Failed to load locale file: " + textStatus, "Locale", localesrc.path);
+                }
+            });
+        }
         $(document).ready(function () {
             //load 登录页面
             debugger
@@ -85,50 +170,11 @@
                         el: '#pagewrap',
                         router: router,
                         data: {
-                            model: _appDataModel,
+                            // model: _appDataModel,
                             viewModel: _appViewModel,
                             viewState: _appViewState
                         },
                         methods: {
-                            /* This will complicate the logic, use local computed property for component-specific locale
-                            onRegisterLocales: function(arg){
-                                console.log('-------------- onRegisterLocales for ', arg.path, arg.locales);
-                            }
-                            */
-                            onRequestData: function (path, startDate, endDate, args, callback, sender) {
-                                let thisvue = this;
-                                let route = _.find(routes, { path: '/' + path });
-    
-                                //console.log('--------------- onRequestData: ', arguments);
-                                _fetchFromDataSource(route.dataSource, startDate, endDate, args, callback, sender);
-                            },
-                            onRequestExport: function (path, conditions, sender) {
-                                let thisvue = this;
-                                let route = _.find(routes, { path: '/' + path });
-    
-                                console.log('-------- trigger download of exported datta: ', path, conditions);
-                                _downloadFileWith(route.dataSource, conditions);
-                            },
-                            onRequestLaunch: function (path, ids, callback, sender) {
-                                let thisvue = this;
-                                let route = _.find(routes, { path: '/' + path });
-                                let args = {
-                                    'key': 'update_rights_status',
-                                    'ResultId': Array.prototype.join.call(ids, ','),
-                                    "RightsProtectionStatus": "2"
-                                };
-    
-                                _updateDataSource(route.dataSource, args, callback, sender);
-                            },
-                            onRequestUpload: function (path, files, callback, sender) {
-                                let thisvue = this;
-                                let route = _.find(routes, { path: '/' + path });
-                                let args = {
-                                    'UserId': 1
-                                };
-    
-                                _uploadToBackend(route.dataSource, files, args, callback, sender);
-                            },
                             onLangButtonClicked: function(ev){
                                 let thisvue = this;
                                 let lang = null;
@@ -139,62 +185,20 @@
                                 }
                                 thisvue.viewState.lang = lang;
                             },
-                            makeCurrentTitle: function () {
-                                let thisvue = this;
-                                let route = _.find(routes, { path: thisvue.$router.currentRoute.path });
-                                let locale = _appViewModel.locales[_appViewState.lang];
-    
-                                if ((true !== wna.IsNullOrEmpty(route)) && (true !== wna.IsNullOrEmpty(route.menuid))) {
-                                    thisvue.viewState.currentTitle = locale.sidemenu[route.menuid];
-                                    thisvue.viewState.currentMenuId = 'pagehead-' + route.menuid;
-                                } else {
-                                    thisvue.viewState.currentTitle = '';
-                                    thisvue.viewState.currentMenuId = '';
-                                }
-                            }
                         },
                         watch: {
-                            $route(to, from) {
-                                this.viewState.currentRoute = this.$router.currentRoute.path;
-                                this.makeCurrentTitle();
-                            },
-                            'viewState.lang': function(){
-                                this.makeCurrentTitle();
-                            }
+                           
                         },
                         computed: {
-                            localeForCurrentRoute: function(){
-                                let thisvue = this;
-                                let locales = thisvue.currentLocale;
-                                let route = thisvue.viewState.currentRoute;
-                                /*
-                                let locale = _.merge({}, locales[route], { shared: locales['shared'] });
-                                return locale;
-                                */
-                               if (true === wna.IsNullOrEmpty(route)){
-                                   return null;
-                               }
-                                console.log('------------- getting localeForCurrentRoute: ', route, locales[route]);
-                                return locales[route];
-                            },
                             currentLocale: function(){
                                 let thisvue = this;
                                 return thisvue.viewModel.locales[thisvue.viewState.lang];
                             }
                         },
-                        beforeMount: function(){
-                            this.viewState.currentRoute = this.$router.currentRoute.path;
-                            this.makeCurrentTitle();
-                        },
                         mounted: function () {
-                            /*
-                            this.viewState.currentRoute = this.$router.currentRoute.path;
-                            this.makeCurrentTitle();
-                            */
+                            console.log('----- vue app inited');
                         }
                     });
-    
-                    console.log('----- vue app inited');
                 });
             }
     
