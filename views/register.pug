@@ -4,15 +4,88 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
-    title 注册页面
+    title login page
 
     block styles
       link(href='images/farvirate.ico', rel='shortcut icon', type='image/icon')
-    //-   link(type='text/css' rel="stylesheet" href='styles/base.css')
+      link(type='text/css' rel="stylesheet" href='styles/entry.css')
 
     script(type='text/javascript').
       var g_BACKEND_API_BASE_URL = '#{backendBaseUrl}';
 
-    block scripts
-        //- script(type='text/javascript', src='js/base.js')
+    block append scripts
+        script(type='text/javascript', src='js/base.js')     
+        script(type='text/javascript', src='js/entry.js')
   body
+    #pagewrap
+      .topbar
+        .brand-logo
+          img(src='assets/logo-white.png')
+        .topbar-nav
+          button.btn-language(type='button' v-on:click="onLangButtonClicked" v-bind:class="[('cn' === viewState.lang) ? 'btn-lan-en' : 'btn-lan-zh']")
+      // /topbar
+      #content
+         .register-container
+            .register-box
+              #register-form
+                  h2.login-title Sign up
+                  form
+                    .form-group(data-status="success")
+                      em(style="color: #CD454A;") * 
+                      input.form-control(type="text" placeholder="Account name")
+                      span.input-status
+                      p.status-info Username is 5-25 characters and needs to contain letters.
+                    .form-group(data-status="success")
+                      em(style="color: #CD454A;") * 
+                      input.form-control(type="text" placeholder="Email address")
+                      span.input-status
+                      p.status-info Username is 5-25 characters and needs to contain letters.
+                    .form-group(data-status="success")
+                      em(style="color: #CD454A;") * 
+                      input.form-control(type="text" placeholder="Company name")
+                      span.input-status
+                      p.status-info Username is 5-25 characters and needs to contain letters.                
+                    .form-group(data-status="false")
+                      em(style="color: #CD454A;") * 
+                      input.form-control(type="password" id="registerPassword1" placeholder="Password")
+                      span.input-status
+                      p.status-info Username is 5-25 characters and needs to contain letters.                
+                      .status-tips
+                        .strength
+                          p Strength
+                          .strength-box(data-status="low")
+                            span
+                            span
+                            span
+                          p.strength-info Low
+                        p.strength-status(data-status="success")
+                          span 5 to 25 charcters
+                        p.strength-status(data-status="false")
+                          span Contains only letters,numbers and symbols  
+                        p.strength-status(data-status="success")
+                          span Contains at least two of the following: letters,numbers,symbols.  
+                    .form-group(data-status="false")
+                      em(style="color: #CD454A;") * 
+                      input.form-control(type="password" placeholder="Confirm naPasswordme")
+                      span.input-status
+                      p.status-info Username is 5-25 characters and needs to contain letters.  
+                    .form-group(data-status="false")
+                      .input-group
+                        .input-group-addon #86
+                        input.form-control(type="password" class=""  placeholder="Mobile number")
+                      span.input-status
+                      p.status-info Username is 5-25 characters and needs to contain letters.                 
+                    .form-group.code-verification(data-status="false")
+                      input.form-control(type="text" placeholder="Verification code")
+                      button.btn.btn-default(type="button") Get code
+                      span.input-status
+                      p.status-info Username is 5-25 characters and needs to contain letters.                 
+                    button(type="submit" class="submit btn btn-default") Sign in 
+                    p.help-block Don’t have an account?
+                      a(href='#') Sign up
+      // /container
+      footer
+        p.footer-info Copyright © 2016 - 2028 Beschannels. All Rights Reserved 京ICP备17006100号
+      // /footer
+    // #pagewrap
+    </div>
