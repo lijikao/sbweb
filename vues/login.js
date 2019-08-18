@@ -4,7 +4,7 @@
         <div id='content'>
         <div id="login-adv">
         <div class="main-info">
-            <h3></h3>
+            <h3>{{login.en.mainInfo}}</h3>
             <p>{{ login.en.subInfo }}</p>
         </div>
         </div>
