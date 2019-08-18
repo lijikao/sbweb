@@ -433,7 +433,7 @@
         redirect: "/login"
     });
     const router = new VueRouter({
-        //mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
+        mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
         routes
     });
 
@@ -459,6 +459,9 @@
                             console.log('-------------- onRegisterLocales for ', arg.path, arg.locales);
                         }
                         */
+                        onLoginout:function(){
+                            this.$router.push({path:'/'})
+                        },
                         onRequestData: function (path, startDate, endDate, args, callback, sender) {
                             let thisvue = this;
                             let route = _.find(routes, { path: '/' + path });

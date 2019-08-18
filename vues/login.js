@@ -30,8 +30,8 @@
               <div class="form-group">
                  
                </div>
-               <button type="submit" class=" submit btn btn-default">{{ login.en.signIn }}</button>
-               <p class="help-block">{{ login.en.helpBlock }}<a :href="login.en.helpBlockLink">{{ login.en.helpBlockInfo }}</a>  </p>
+               <button type="submit" class=" submit btn btn-default" @click="goToLogin">{{ login.en.signIn }}</button>
+               <p class="help-block">{{ login.en.helpBlock }}<a href="#" @click="goToRegister">{{ login.en.helpBlockInfo }}</a>  </p>
             </form>
         </div>
         </div> 
@@ -64,6 +64,12 @@
         methods: {
             checkboxToggle: function () {
                 this.isActive = !this.isActive;
+            },
+            goToRegister(){
+                this.$router.push({path:'/register'})                
+            },
+            goToLogin(){
+                this.$router.push({path:'/CounterfeitProduct'})                
             }
         }
     });
