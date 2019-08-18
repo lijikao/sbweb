@@ -140,6 +140,51 @@
   vertical-align: middle;
   margin-bottom: 0;
 }
+#register-form .input-group-addon:first-child {
+  border-right: 0;
+}
+#register-form .input-group .form-control:first-child,
+#register-form .input-group-addon:first-child,
+#register-form .input-group-btn:first-child > .btn,
+#register-form .input-group-btn:first-child > .btn-group > .btn,
+#register-form .input-group-btn:first-child > .dropdown-toggle,
+#register-form .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
+#register-form .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#register-form .input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#register-form .btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+#register-form #register-form .code-verification .btn:active,
+#register-form #register-form .code-verification .btn:focus {
+  box-shadow: none;
+}
+#register-form .btn-default.active,
+#register-form .btn-default:active,
+#register-form .open > .dropdown-toggle.btn-default {
+  background-image: none;
+}
+#register-form .btn-default.active,
+#register-form .btn-default:active,
+#register-form .open > .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
 .register-container {
   padding: 60px 170px;
   height: 100%;

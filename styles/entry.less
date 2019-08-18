@@ -154,6 +154,54 @@
     }
   }
   
+  #register-form {
+    .input-group-addon:first-child {
+      border-right: 0;
+    }
+    .input-group .form-control:first-child,
+    .input-group-addon:first-child,
+    .input-group-btn:first-child > .btn,
+    .input-group-btn:first-child > .btn-group > .btn,
+    .input-group-btn:first-child > .dropdown-toggle,
+    .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
+    .input-group-btn:last-child
+      > .btn:not(:last-child):not(.dropdown-toggle) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .input-group-addon {
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1;
+      color: #555;
+      text-align: center;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .btn-default:hover {
+      color: #333;
+      background-color: #e6e6e6;
+      border-color: #adadad;
+    }
+    #register-form .code-verification .btn:active,
+    #register-form .code-verification .btn:focus {
+      box-shadow: none;
+    }
+    .btn-default.active,
+    .btn-default:active,
+    .open > .dropdown-toggle.btn-default {
+      background-image: none;
+    }
+    .btn-default.active,
+    .btn-default:active,
+    .open > .dropdown-toggle.btn-default {
+      color: #333;
+      background-color: #e6e6e6;
+      border-color: #adadad;
+    }
+  }
   // register
   
   .register-container {
@@ -404,3 +452,4 @@
     }
   }
   
+
