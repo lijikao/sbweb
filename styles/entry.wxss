@@ -13,7 +13,7 @@
   width: calc(100% - 700px);
   height: 100%;
   font-size: 0;
-  line-height: 100vh;
+  line-height: calc( 100vh - 60px - 78px);
 }
 #login-adv .main-info {
   display: inline-block;
@@ -116,6 +116,30 @@
   color: #999999;
   line-height: 20px;
 }
+#login-form .login-status-info {
+  background: rgba(248, 221, 218, 0.5);
+  border: 1px solid #cd454a;
+  border-radius: 2px;
+  padding: 5px 9px;
+  margin-bottom: 20px;
+}
+#login-form .login-status-info span {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url("../assets/entry/error-icon.svg") center no-repeat;
+  background-size: 100% 100%;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+#login-form .login-status-info p {
+  display: inline-block;
+  font-size: 12px;
+  color: #333333;
+  line-height: 20px;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
 .register-container {
   padding: 60px 170px;
   height: 100%;
@@ -159,7 +183,7 @@
   padding-left: 10px;
 }
 #register-form .form-group input:focus {
-  border: 1px solid #7290F2;
+  border: 1px solid #7290f2;
   box-shadow: none;
 }
 #register-form .input-group {
@@ -264,8 +288,19 @@
   padding: 15px;
   opacity: 0;
   visibility: hidden;
-  transition: all .3s;
+  transition: all 0.3s;
   z-index: 10;
+}
+#register-form .status-tips:after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  margin-top: -6px;
+  width: 12px;
+  height: 12px;
+  background: url("../assets/entry/artboard.svg") center no-repeat;
+  background-size: 100% 100%;
 }
 #register-form .status-tips .strength p {
   font-size: 12px;
@@ -288,7 +323,7 @@
   margin-right: 1px;
 }
 #register-form .status-tips .strength .strength-box[data-status="low"] span:nth-child(1) {
-  background: #CD454A;
+  background: #cd454a;
 }
 #register-form .status-tips .strength .strength-info {
   font-size: 12px;

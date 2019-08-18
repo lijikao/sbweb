@@ -90,7 +90,6 @@ function watchFiles(){
     gulp.watch('styles/**/*.css', packEntryStyles);
     gulp.watch('styles/**/*.less', compileLess);
     gulp.watch('styles/**/*.css', packBaseStyles);
-    gulp.watch('vues/**/*', packEntryJs);
     gulp.watch('gulpfile.js', build);
 }
 
