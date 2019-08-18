@@ -1,14 +1,13 @@
-.topbar {
-  position: relative;
-  height: 60px;
-  line-height: 60px;
+[v-cloak] {
+  display: none !important;
 }
 #content {
   background: url("../assets/entry/login-bg.png") center no-repeat;
   background-size: cover;
-  height: calc( 100vh - 60px - 78px);
+  height: calc(100vh - 50px - 77px);
   position: relative;
   overflow: hidden;
+  margin-top: 50px;
 }
 #login-adv {
   width: calc(100% - 700px);

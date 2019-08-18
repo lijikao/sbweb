@@ -62,21 +62,14 @@ function packAppJs(){
         'vues/counterfeitProduct.js',
         'vues/modalDialog.js',
         'vues/settingsView.js',
+        'vues/login.js',
+        'vues/register.js', 
         'scripts/index.js'
     ])
     .pipe(concat('main.js'))
     .pipe(gulp.dest('dist/js/'));
 }
 
-function packEntryJs(){
-    return gulp.src([
-        'vues/login.js',
-        'vues/register.js',        
-        'scripts/entry.js'
-    ])
-    .pipe(concat('entry.js'))
-    .pipe(gulp.dest('dist/js/'));
-}
 function packEntryStyles(){
     return gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.min.css',        
@@ -88,13 +81,12 @@ function packEntryStyles(){
     .pipe(gulp.dest('dist/styles/'))
 }
 
-const build = gulp.series(compileLess, packBaseJs, packBaseStyles, packAppJs,packEntryJs, packEntryStyles, watchFiles);
+const build = gulp.series(compileLess, packBaseJs, packBaseStyles, packAppJs, packEntryStyles, watchFiles);
 
 
 function watchFiles(){
     gulp.watch('vues/**/*', packAppJs);
     gulp.watch('scripts/**/*', packAppJs);
-    gulp.watch('scripts/**/*', packEntryJs);
     gulp.watch('styles/**/*.css', packEntryStyles);
     gulp.watch('styles/**/*.less', compileLess);
     gulp.watch('styles/**/*.css', packBaseStyles);

@@ -1,11 +1,26 @@
 (function(){
     Vue.component('vc-loginwarp', {
         template: `
-            <div id='content'>嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻</div>
+            <div id='content'>嘻嘻嘻是多少www嘻都是嘻444嘻嘻嘻寻寻寻寻寻
+              <button v-on:click="xxx">xxxx</buuton>
+            
+            </div>
         `,
         props: ['model', 'locale'],
         created(){
             console.log('login page')
+        },
+        methods:{
+          xxx:function(){
+            // window.location.pathname = '/register'
+            debugger
+            this.$router.push({  //核心语句
+              path:'/register',   //跳转的路径
+              // query:{           //路由传参时push和query搭配使用 ，作用时传递参数
+              //   id:this.id ,  
+              // }
+            })
+          }
         }
     });
 })();
