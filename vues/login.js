@@ -59,7 +59,6 @@
         }
       };
     },
-    props: ["model", "locale"],
     created() {
       console.log("registerwarp page");
     },
@@ -95,13 +94,5 @@
         }
       });
     },
-    created() {
-      console.log();
-    },
-    methods: {
-      checkboxToggle: function() {
-        this.isActive = !this.isActive;
-      }
-    }
   });
 })();

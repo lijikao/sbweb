@@ -2678,7 +2678,6 @@ var Helpers = (function (){
         }
       };
     },
-    props: ["model", "locale"],
     created() {
       console.log("registerwarp page");
     },
@@ -2714,14 +2713,6 @@ var Helpers = (function (){
         }
       });
     },
-    created() {
-      console.log();
-    },
-    methods: {
-      checkboxToggle: function() {
-        this.isActive = !this.isActive;
-      }
-    }
   });
 })();
 
