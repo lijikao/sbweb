@@ -3242,7 +3242,6 @@ var Helpers = (function (){
         path: "/",
         redirect: "/login"
     });
-    console.log(routes)
     const router = new VueRouter({
         //mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
         routes
