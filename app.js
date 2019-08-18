@@ -7,7 +7,7 @@ var pug = require('pug');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login');
+// var loginRouter = require('./routes/login');
 // var registerRouter = require('./routes/register');
 
 

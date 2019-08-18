@@ -918,10 +918,16 @@ button.signupbtn{
 .btn-show{
     display: initial;
 }
-.topbar {
+[v-cloak] {
+  display: none !important;
+}
+#content {
+  background: url("../assets/entry/login-bg.png") center no-repeat;
+  background-size: cover;
+  height: calc(100vh - 50px - 77px);
   position: relative;
-  height: 60px;
-  line-height: 60px;
+  overflow: hidden;
+  margin-top: 50px;
 }
 #content {
   background: url("../assets/entry/login-bg.png") center no-repeat;

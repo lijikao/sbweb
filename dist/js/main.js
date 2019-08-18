@@ -3035,10 +3035,23 @@ var Helpers = (function (){
     }).value();
 
     routes.push( {
+        path: "/login",
+        component:Vue.component("vc-loginwarp"),
+        meta:{
+            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+        }
+    },
+    {
+        path: "/register",
+        component:Vue.component("vc-registerwarp"),
+        meta:{
+            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+        }
+    },{
         path: "/",
-        redirect: "/CounterfeitProduct"
+        redirect: "/login"
     });
-
+    console.log(routes)
     const router = new VueRouter({
         //mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
         routes
@@ -3058,7 +3071,7 @@ var Helpers = (function (){
                     data: {
                         model: _appDataModel,
                         viewModel: _appViewModel,
-                        viewState: _appViewState
+                        viewState: _appViewState,
                     },
                     methods: {
                         /* This will complicate the logic, use local computed property for component-specific locale
@@ -3134,6 +3147,9 @@ var Helpers = (function (){
                         }
                     },
                     computed: {
+                        renderForCurrentHtml:function(){
+                            return this.$route.path == '/login' || this.$route.path == '/register'
+                        },
                         localeForCurrentRoute: function(){
                             let thisvue = this;
                             let locales = thisvue.currentLocale;
@@ -3154,6 +3170,7 @@ var Helpers = (function (){
                         }
                     },
                     beforeMount: function(){
+                        // this.xxx = this.$route.path == 'login' || this.$route.path == 'register'
                         this.viewState.currentRoute = this.$router.currentRoute.path;
                         this.makeCurrentTitle();
                     },

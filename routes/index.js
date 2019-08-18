@@ -8,14 +8,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', backendBaseUrl: backendBaseUrl });
 });
 
-/* GET login page. */
-router.get("/login",function(req,res,next){    
-  res.render("login",{title:'User Login'});
-})
+// /* GET login page. */
+// router.get("/login",function(req,res,next){    
+//   res.render("login",{title:'User Login'});
+// })
 
-/* GET register page. */
-router.get("/register",function(req,res,next){
-  res.render("register",{title:'User Register'});
-})
+// /* GET register page. */
+// router.get("/register",function(req,res,next){
+//   res.render("common",{title:'User Register'});
+// })
 
 module.exports = router;

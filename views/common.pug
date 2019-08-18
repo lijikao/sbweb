@@ -4,25 +4,27 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
-    block title
+    title 反假冒 - 商品报告
 
     link(href='images/farvirate.ico', rel='shortcut icon', type='image/icon')
     link(type='text/css' rel="stylesheet" href='styles/entry.css')
-
+    script(type='text/javascript').
+      var g_BACKEND_API_BASE_URL = '#{backendBaseUrl}';
     script(type='text/javascript', src='js/base.js')    
-    script(type='text/javascript', src='js/entry.js')
+    script(type='text/javascript', src='js/main.js')
   body
-    #pagewrap
-      .topbar
-        .brand-logo
-          img(src='assets/logo-white.png')
-        .topbar-nav
-          button.btn-language(type='button' v-on:click="onLangButtonClicked" v-bind:class="[('cn' === viewState.lang) ? 'btn-lan-en' : 'btn-lan-zh']")
-      // /topbar
-      block commonwarp
-      // /container
-      footer
-        p.footer-info Copyright © 2016 - 2028 Beschannels. All Rights Reserved 京ICP备17006100号
-      // /footer
+    #pagewrap1
+      .sss
+        .topbar
+          .brand-logo
+            img(src='assets/logo-white.png')
+          .topbar-nav
+            button.btn-language(type='button' v-on:click="onLangButtonClicked" v-bind:class="[('cn' === viewState.lang) ? 'btn-lan-en' : 'btn-lan-zh']")
+        // /topbar
+        block commonwarp
+        // /container
+        footer
+          p.footer-info Copyright © 2016 - 2028 Beschannels. All Rights Reserved 京ICP备17006100号
+        // /footer
     // #pagewrap
     </div>
