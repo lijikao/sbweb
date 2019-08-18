@@ -17,6 +17,7 @@ function packBaseJs(){
     return gulp.src([
         //'node_modules/popper.js/dist/popper.min.js',
         'node_modules/jquery/dist/jquery.js',
+        'node_modules/jquery-slide/jquery.slide.min.js',
         'node_modules/lodash/lodash.js',
         'node_modules/vue/dist/vue.min.js',
         'node_modules/vue-router/dist/vue-router.js',

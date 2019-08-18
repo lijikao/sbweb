@@ -1,0 +1,32 @@
+{
+    "cn": {
+        "mainInfo": "Brand Intelligence & Brand Protection1",
+        "subInfo":"Making digital commerce trustworthy through big data, AI and blockchain1",
+        "loginTitle": "Log in1",
+        "loginStatusinfo": "Login or login password is incorrect1",
+        "inputName": "Jane Doe",
+        "inputPassword": "Password",
+        "rememberMe": "Remember me",
+        "forget": "Forget Password ?",
+        "forgetLink": "#",
+        "signIn": "Sign in",
+        "helpBlock": "Don’t have an account?",
+        "helpBlockInfo": "Sign up",
+        "helpBlockLink": "#"
+      },
+    "en": {
+        "mainInfo": "Brand Intelligence & Brand Protection",
+        "subInfo":"Making digital commerce trustworthy through big data, AI and blockchain",
+        "loginTitle": "Log in",
+        "loginStatusinfo": "Login or login password is incorrect",
+        "inputName": "Jane Doe",
+        "inputPassword": "Password",
+        "rememberMe": "Remember me",
+        "forget": "Forget Password ?",
+        "forgetLink": "#",
+        "signIn": "Sign in",
+        "helpBlock": "Don’t have an account?",
+        "helpBlockInfo": "Sign up",
+        "helpBlockLink": "#"
+      }
+}

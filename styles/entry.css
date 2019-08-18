@@ -65,6 +65,20 @@
 #login-form .form-group input.input {
   padding-left: 10px;
 }
+#login-form .form-group input {
+  width: 320px;
+  display: inline-block;
+  padding-left: 20px;
+  font-size: 12px;
+  color: #000;
+}
+#login-form .form-group input.input {
+  padding-left: 10px;
+}
+#login-form .form-group input:focus {
+  border: 1px solid #7290f2;
+  box-shadow: none;
+}
 #login-form .checkbox {
   font-size: 12px;
   color: #999999;
@@ -74,6 +88,11 @@
 }
 #login-form .checkbox label {
   padding: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+#login-form .checkbox .forget-password {
+  margin-bottom: 0;
 }
 #login-form .s-checkbox {
   width: 16px;
@@ -370,6 +389,12 @@
 #register-form .status-tips .strength .strength-box[data-status="low"] span:nth-child(1) {
   background: #cd454a;
 }
+#register-form .status-tips .strength .strength-box[data-status="center"] span:nth-child(n-1) {
+  background: #cd454a;
+}
+#register-form .status-tips .strength .strength-box[data-status="height"] span {
+  background: #cd454a;
+}
 #register-form .status-tips .strength .strength-info {
   font-size: 12px;
   color: #cd454a;
@@ -410,4 +435,50 @@ footer p {
   line-height: 77px;
   margin: 0;
   padding: 0;
+}
+.ui-slider-wrap {
+  background: #e8e8e8;
+  position: relative;
+}
+.ui-slider-wrap .ui-slider-bg {
+  width: 0;
+}
+.ui-slider-wrap .ui-slider-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: move;
+  text-align: center;
+  border: 1px solid #ccc;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ui-slider-wrap .ui-slider-btn {
+  background: #fff url('../assets/entry/slide.svg') no-repeat center;
+}
+.ui-slider-wrap .ui-slider-btn.success {
+  background-image: url('../assets/entry/slide-success.svg');
+}
+.ui-slider-wrap .ui-slider-text {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #666;
+}
+.ui-slider-wrap .ui-slider-no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+#check-slide.success .ui-slider-text {
+  background: #24CCB8;
 }

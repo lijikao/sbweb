@@ -230,6 +230,13 @@
                     viewComponent: 'vc-counterfeit-store',
                     dataSource: 'abnormal_shop_report',
                     localeSource: 'counterfeitStores.json',
+                },
+                {
+                    id: 'sidebar-100',
+                    target: 'loginData',
+                    viewComponent: 'vc-counterfeit-store111',
+                    dataSource: 'abnormal_shop_report111',
+                    localeSource: 'login.json',
                 }
             ]
         }, 
@@ -507,7 +514,6 @@
                             let thisvue = this;
                             let route = _.find(routes, { path: thisvue.$router.currentRoute.path });
                             let locale = _appViewModel.locales[_appViewState.lang];
-
                             if ((true !== wna.IsNullOrEmpty(route)) && (true !== wna.IsNullOrEmpty(route.menuid))) {
                                 thisvue.viewState.currentTitle = locale.sidemenu[route.menuid];
                                 thisvue.viewState.currentMenuId = 'pagehead-' + route.menuid;
@@ -534,6 +540,8 @@
                             let thisvue = this;
                             let locales = thisvue.currentLocale;
                             let route = thisvue.viewState.currentRoute;
+                            let locale = _appViewModel.locales[_appViewState.lang];
+                            console.log(locale)
                             /*
                             let locale = _.merge({}, locales[route], { shared: locales['shared'] });
                             return locale;
