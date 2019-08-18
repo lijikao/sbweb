@@ -23,8 +23,8 @@ html
             img(src='assets/logo-white.png')
           .topbar-nav
             button.btn-language(type='button' v-on:click="onLangButtonClicked" v-bind:class="[('cn' === viewState.lang) ? 'btn-lan-en' : 'btn-lan-zh']")
-            a.link-signout.hidden(v-if="!renderForCurrentHtml" href='#' v-bind:class="[('cn' === viewState.lang) ? 'btn-show' : '']") 退出登录
-            a.link-signout.hidden(v-if="!renderForCurrentHtml" href='#' v-bind:class="[('cn' === viewState.lang) ? '' : 'btn-show']") Log off
+            a.link-signout.hidden(v-if="!renderForCurrentHtml" v-on:click='onLoginout'  v-bind:class="[('cn' === viewState.lang) ? 'btn-show' : '']") 退出登录
+            a.link-signout.hidden(v-if="!renderForCurrentHtml" v-on:click='onLoginout'  v-bind:class="[('cn' === viewState.lang) ? '' : 'btn-show']") Log off
         // /topbar
         router-view(v-if="renderForCurrentHtml" :lang="viewState.lang" :locale="localeForCurrentRoute")
         .contentWarp(v-if="!renderForCurrentHtml")
