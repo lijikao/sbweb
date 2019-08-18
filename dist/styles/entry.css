@@ -924,7 +924,7 @@ button.signupbtn{
 #content {
   background: url("../assets/entry/login-bg.png") center no-repeat;
   background-size: cover;
-  height: calc(100vh - 50px - 77px);
+  height: calc(100vh - 50px - 78px);
   position: relative;
   overflow: hidden;
   margin-top: 50px;
