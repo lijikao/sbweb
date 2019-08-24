@@ -65,7 +65,8 @@ function packAppJs(){
         'vues/settingsView.js',
         'vues/login.js',
         'vues/register.js', 
-        'vues/password.js', 
+        'vues/forgetPassword.js', 
+        'vues/resetPassword.js', 
         'scripts/index.js'
     ])
     .pipe(concat('main.js'))

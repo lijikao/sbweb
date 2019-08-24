@@ -1,5 +1,5 @@
 (function () {
-    Vue.component("vc-passwordwarp", {
+    Vue.component("vc-resetpasswordwarp", {
         template: `
         <div id="content">
         <div class="password-container">
