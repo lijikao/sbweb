@@ -26,7 +26,7 @@ html
             a.link-signout.hidden(v-if="!renderForCurrentHtml" v-on:click='onLoginout'  v-bind:class="[('cn' === viewState.lang) ? 'btn-show' : '']") 退出登录
             a.link-signout.hidden(v-if="!renderForCurrentHtml" v-on:click='onLoginout'  v-bind:class="[('cn' === viewState.lang) ? '' : 'btn-show']") Log off
         // /topbar
-        router-view(v-if="renderForCurrentHtml" :lang="viewState.lang" :locale="localeForCurrentRoute")
+        router-view(v-if="renderForCurrentHtml" :lang="viewState.lang" :locale='viewModel.locales[viewState.lang]')
         .contentWarp(v-if="!renderForCurrentHtml")
           .sidebar
             .sidebar-header(v-bind:class="viewState.currentMenuId")

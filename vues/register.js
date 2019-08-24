@@ -66,12 +66,26 @@
                                 <p class="status-info">{{register.en.inputVerificationInfo}}</p>
                             </div>
                             
-                            <button type="submit" class=" submit btn btn-default" @click="register">{{ register.en.signIn }}</button>
+                            <button type="submit" class=" submit btn btn-default" @click="registerr">{{ register.en.signIn }}</button>
                             <p class="help-block">{{ register.en.helpBlock }}<a href="#" @click="goToLoginPage">{{ register.en.helpBlockInfo }}</a>  </p>
                         </form>
                 </div>
         </div>
     </div>
+    <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                    <span class="modal-success-icon"></span>
+                        <h3>The activation email has been sent to your registered email address</h3>
+                        <p>Designwang@163.com Please check your email and activate your account.</p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
     `,
         props: ['model', 'locale'],
@@ -135,8 +149,12 @@
               }
         },
         methods: {
-            register(){
-
+            registerr(){
+                $('#register').modal('toggle');
+            },
+            modalGoToLoginPage(){
+                $('#register').modal('hide');
+                this.$router.push({path:'/login'})
             },
             goToLoginPage(){
                 this.$router.push({path:'/login'})

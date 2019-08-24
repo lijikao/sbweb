@@ -1079,50 +1079,27 @@ button.signupbtn{
   vertical-align: middle;
   margin-bottom: 0;
 }
-#register-form .input-group-addon:first-child {
-  border-right: 0;
+#login-form .email-status-info {
+  background: rgba(248, 221, 218, 0.5);
+  border: 1px solid #cd454a;
+  border-radius: 2px;
+  padding: 5px 9px;
+  margin-bottom: 20px;
 }
-#register-form .input-group .form-control:first-child,
-#register-form .input-group-addon:first-child,
-#register-form .input-group-btn:first-child > .btn,
-#register-form .input-group-btn:first-child > .btn-group > .btn,
-#register-form .input-group-btn:first-child > .dropdown-toggle,
-#register-form .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
-#register-form .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+#login-form .email-status-info p {
+  display: inline-block;
+  font-size: 12px;
+  color: #333333;
+  line-height: 20px;
+  vertical-align: middle;
+  margin-bottom: 0;
 }
-#register-form .input-group-addon {
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1;
-  color: #555;
-  text-align: center;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-#register-form .btn-default:hover {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
-}
-#register-form #register-form .code-verification .btn:active,
-#register-form #register-form .code-verification .btn:focus {
-  box-shadow: none;
-}
-#register-form .btn-default.active,
-#register-form .btn-default:active,
-#register-form .open > .dropdown-toggle.btn-default {
-  background-image: none;
-}
-#register-form .btn-default.active,
-#register-form .btn-default:active,
-#register-form .open > .dropdown-toggle.btn-default {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
+#login-form .email-status-info p a {
+  font-size: 12px;
+  color: #007bff;
+  letter-spacing: 0;
+  line-height: 20px;
+  text-decoration: underline;
 }
 .register-container {
   padding: 60px 170px;
@@ -1212,7 +1189,7 @@ button.signupbtn{
   box-shadow: none;
 }
 #register-form .submit[type="submit"] {
-  background: #cccccc;
+  background: #7290f2;
   border-radius: 2px;
   height: 40px !important;
   width: 320px !important;
@@ -1228,6 +1205,51 @@ button.signupbtn{
   font-size: 12px;
   color: #999999;
   line-height: 20px;
+}
+#register-form .input-group-addon:first-child {
+  border-right: 0;
+}
+#register-form .input-group .form-control:first-child,
+#register-form .input-group-addon:first-child,
+#register-form .input-group-btn:first-child > .btn,
+#register-form .input-group-btn:first-child > .btn-group > .btn,
+#register-form .input-group-btn:first-child > .dropdown-toggle,
+#register-form .input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
+#register-form .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#register-form .input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#register-form .btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+#register-form #register-form .code-verification .btn:active,
+#register-form #register-form .code-verification .btn:focus {
+  box-shadow: none;
+}
+#register-form .btn-default.active,
+#register-form .btn-default:active,
+#register-form .open > .dropdown-toggle.btn-default {
+  background-image: none;
+}
+#register-form .btn-default.active,
+#register-form .btn-default:active,
+#register-form .open > .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
 }
 #register-form .input-status {
   width: 16px;
@@ -1378,10 +1400,10 @@ footer p {
   box-sizing: border-box;
 }
 .ui-slider-wrap .ui-slider-btn {
-  background: #fff url('../assets/entry/slide.svg') no-repeat center;
+  background: #fff url("../assets/entry/slide.svg") no-repeat center;
 }
 .ui-slider-wrap .ui-slider-btn.success {
-  background-image: url('../assets/entry/slide-success.svg');
+  background-image: url("../assets/entry/slide-success.svg");
 }
 .ui-slider-wrap .ui-slider-text {
   width: 100%;
@@ -1400,5 +1422,392 @@ footer p {
   user-select: none;
 }
 #check-slide.success .ui-slider-text {
-  background: #24CCB8;
+  background: #24ccb8;
+}
+#register .modal-content {
+  text-align: center;
+  padding: 30px 30px;
+}
+#register .modal-content .modal-body {
+  padding: 0;
+}
+#register .modal-content .modal-footer {
+  padding: 0;
+}
+#register .modal-success-icon {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  background: url(../assets/entry/success-icon.svg) center no-repeat;
+  background-size: cover;
+  margin-bottom: 23px;
+}
+#register h3 {
+  font-size: 18px;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 24px;
+  margin-bottom: 10px;
+  padding: 0 50px;
+}
+#register p {
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+#register .btn {
+  background: #7290f2;
+  border-radius: 4px;
+}
+.password-container {
+  padding: 60px 170px;
+  height: 100%;
+}
+.password-container .password-box {
+  background: #ffffff;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
+  height: calc(100% - 180px);
+  align-items: center;
+}
+.password-container .password-top {
+  background: #ffffff;
+  align-items: center;
+  border-bottom: 1px solid #d6d6d6;
+  height: 180px;
+  padding-top: 100px;
+  position: relative;
+  z-index: 9;
+}
+.password-container .password-top h2 {
+  text-align: center;
+}
+.password-container #password-form {
+  width: 400px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+#password-form .password-title {
+  font-size: 24px;
+  color: #000000;
+  line-height: 29px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+#password-form .form-group {
+  position: relative;
+}
+#password-form .form-group em {
+  font-style: normal;
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+#password-form .form-group input {
+  width: 320px;
+  display: inline-block;
+  padding-left: 20px;
+  font-size: 12px;
+  color: #000;
+}
+#password-form .form-group input.input {
+  padding-left: 10px;
+}
+#password-form .form-group input:focus {
+  border: 1px solid #7290f2;
+  box-shadow: none;
+}
+#password-form .input-group {
+  width: 320px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#password-form .input-group .input-group-addon {
+  background: #fff;
+  width: 42px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #999999;
+  padding: 0;
+  display: inline-block;
+  float: left;
+}
+#password-form .input-group input {
+  width: calc(320px - 42px);
+  float: left;
+}
+#password-form .code-verification input {
+  width: 194px;
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+#password-form .code-verification .btn {
+  border: 1px solid #7290f2;
+  border-radius: 2px;
+  height: 40px !important;
+  vertical-align: middle;
+  font-size: 14px !important;
+  color: #7290f2;
+  width: 116px !important;
+  padding: 8px 10px 8px 10px;
+}
+#password-form .code-verification .btn:active,
+#password-form .code-verification .btn:focus {
+  box-shadow: none;
+}
+#password-form .submit[type="submit"] {
+  background: #7290f2;
+  border-radius: 2px;
+  height: 40px !important;
+  width: 320px !important;
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 10px;
+}
+#password-form .help-block {
+  font-size: 12px;
+  color: #999999;
+  line-height: 20px;
+}
+#password-form .input-status {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+#password-form .status-info {
+  font-size: 12px;
+  color: #cd454a;
+  line-height: 18px;
+  padding-top: 5px;
+  display: none;
+}
+#password-form .form-group[data-status="success"] .input-status {
+  background: url("../assets/entry/status-success.svg") center no-repeat;
+}
+#password-form .form-group[data-status="false"] .input-status {
+  background: url("../assets/entry/status-false.svg") center no-repeat;
+}
+#password-form .form-group[data-status="false"] .status-info {
+  display: block;
+}
+#password-form .form-group[data-status="false"] input {
+  border: 1px solid #cd454a;
+}
+#password-form .form-group[data-status="default"] input {
+  color: #cd454a;
+  border: 1px solid #cd454a;
+}
+#password-form .status-tips {
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 335px;
+  background: #ffffff;
+  box-shadow: 0 7px 15px 0 rgba(218, 218, 218, 0.5);
+  border-radius: 3px;
+  border: 1px solid #d6d6d6;
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  z-index: 10;
+}
+#password-form .status-tips:after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  margin-top: -6px;
+  width: 12px;
+  height: 12px;
+  background: url("../assets/entry/artboard.svg") center no-repeat;
+  background-size: 100% 100%;
+}
+#password-form .status-tips .strength p {
+  font-size: 12px;
+  color: #666666;
+  text-align: center;
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+#password-form .status-tips .strength .strength-box {
+  display: inline-block;
+  margin-right: 9px;
+}
+#password-form .status-tips .strength .strength-box span {
+  display: inline-block;
+  width: 30px;
+  height: 10px;
+  background: #d8d8d8;
+  float: left;
+  margin-right: 1px;
+}
+#password-form .status-tips .strength .strength-box[data-status="low"] span:nth-child(1) {
+  background: #cd454a;
+}
+#password-form .status-tips .strength .strength-box[data-status="center"] span:nth-child(n-1) {
+  background: #cd454a;
+}
+#password-form .status-tips .strength .strength-box[data-status="height"] span {
+  background: #cd454a;
+}
+#password-form .status-tips .strength .strength-info {
+  font-size: 12px;
+  color: #cd454a;
+}
+#password-form .status-tips .strength-status {
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 10px;
+}
+#password-form .status-tips .strength-status span {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: sub;
+}
+#password-form .status-tips .strength-status[data-status="success"] span {
+  background: url("../assets/entry/strength-success.svg") center no-repeat;
+  background-size: 100% 100%;
+}
+#password-form .status-tips .strength-status[data-status="false"] span {
+  background: url("../assets/entry/strength-false.svg") center no-repeat;
+  background-size: 100% 100%;
+}
+#password-form .status-tips.tipShow {
+  opacity: 1;
+  visibility: visible;
+}
+#password .modal-content {
+  text-align: center;
+  padding: 30px 30px;
+}
+#password .modal-content .modal-body {
+  padding: 0;
+}
+#password .modal-content .modal-footer {
+  padding: 0;
+}
+#password .modal-success-icon {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  background: url(../assets/entry/reset-password.svg) center no-repeat;
+  background-size: cover;
+  margin-bottom: 23px;
+}
+#password h3 {
+  font-size: 18px;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 24px;
+  margin-bottom: 10px;
+  padding: 0 50px;
+}
+#password p {
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+#password .btn {
+  background: #7290f2;
+  border-radius: 4px;
+}
+#password-form .password-status-info {
+  text-align: center;
+}
+#password-form .password-status-info .modal-body {
+  padding: 0;
+}
+#password-form .password-status-info .modal-footer {
+  padding: 0;
+}
+#password-form .password-status-info .modal-success-icon {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  background: url(../assets/entry/success-icon.svg) center no-repeat;
+  background-size: cover;
+  margin-bottom: 23px;
+}
+#password-form .password-status-info h3 {
+  font-size: 18px;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+#password-form .password-status-info p {
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+#password-form .password-status-info .btn {
+  background: #7290f2;
+  border-radius: 4px;
+}
+#password-form .password-status-info.show {
+  display: block;
+}
+#password-error .modal-content,
+#register-error .modal-content {
+  text-align: center;
+  padding: 30px 30px;
+}
+#password-error .modal-content .modal-body,
+#register-error .modal-content .modal-body {
+  padding: 0;
+}
+#password-error .modal-content .modal-footer,
+#register-error .modal-content .modal-footer {
+  padding: 0;
+}
+#password-error .modal-success-icon,
+#register-error .modal-success-icon {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  background: url(../assets/entry/overdue-icon.svg) center no-repeat;
+  background-size: cover;
+  margin-bottom: 23px;
+}
+#password-error h3,
+#register-error h3 {
+  font-size: 18px;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 24px;
+  margin-bottom: 30px;
+  padding: 0 50px;
+}
+#password-error .btn,
+#register-error .btn {
+  background: #7290f2;
+  border-radius: 4px;
 }

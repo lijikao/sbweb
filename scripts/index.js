@@ -435,12 +435,20 @@
         meta:{
             requireAuth:true,//验证用户能不能跳转这个页面true能false不能
         }
-    },{
+    },
+    {
+        path: "/password",
+        component:Vue.component("vc-passwordwarp"),
+        meta:{
+            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+        }
+    },
+    {
         path: "/",
         redirect: "/login"
     });
     const router = new VueRouter({
-        mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
+        // mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
         routes
     });
 
@@ -537,7 +545,7 @@
                     },
                     computed: {
                         renderForCurrentHtml:function(){
-                            return this.$route.path == '/login' || this.$route.path == '/register'
+                            return this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/password'
                         },
                         localeForCurrentRoute: function(){
                             let thisvue = this;

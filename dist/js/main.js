@@ -2620,40 +2620,72 @@ var Helpers = (function (){
 (function() {
   Vue.component("vc-loginwarp", {
     template: `
-        <div id='content'>
-        <div id="login-adv">
+  <div id='content'>
+    <div id="login-adv">
         <div class="main-info">{{lang}}
             <h3>{{login.en.mainInfo}}</h3>
             <p>{{ login.en.subInfo }}</p>
         </div>
+    </div>
+    <div id="login-form">
+        <h2 class="login-title">{{ login.en.loginTitle }}</h2>
+        <div class="email-status-info">
+            <p>邮箱地址尚未激活，请<a href="#">查看激活邮件</a>，激活后重新登录</p>
         </div>
-        <div id="login-form">
-          <h2 class="login-title">{{ login.en.loginTitle }}</h2>
-          <div class="login-status-info">
+        <div class="login-status-info">
             <span></span>
             <p>{{ login.en.loginStatusinfo }}</p>
-          </div>
-          <form>
-              <div class="form-group">
-                  <input type="text" class="form-control" :placeholder=" login.en.inputName ">
-              </div>
-              <div class="form-group">
-               <input type="password" class="form-control"  :placeholder=" login.en.inputPassword ">
-              </div>
-              <div class="checkbox">
-                <label v-on:click="checkboxToggle">
-                  <span class="s-checkbox"  type="checkbox" :class="{'active':isActive}" ></span> {{ login.en.rememberMe }}
-                </label>
-                <p class="forget-password"><a :href="login.en.forgetLink">{{ login.en.forget }}</a></p>
-              </div>
-              <div class="form-group">
-                <div id="check-slide"></div>
-               </div>
-               <button type="submit" class=" submit btn btn-default" @click="goToLogin">{{ login.en.signIn }}</button>
-               <p class="help-block">{{ login.en.helpBlock }}<a href="#" @click="goToRegister">{{ login.en.helpBlockInfo }}</a>  </p>
-            </form>
         </div>
-        </div> 
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" :placeholder=" login.en.inputName ">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" :placeholder=" login.en.inputPassword ">
+            </div>
+            <div class="checkbox">
+                <label v-on:click="checkboxToggle">
+                    <span class="s-checkbox" type="checkbox" :class="{'active':isActive}"></span> {{ login.en.rememberMe
+                    }}
+                </label>
+                <p class="forget-password"><a href="javascript:void(0);" @click="goToPassword">{{ login.en.forget }}</a>
+                </p>
+            </div>
+            <div class="form-group">
+                <div id="check-slide"></div>
+            </div>
+            <button type="submit" class="submit btn btn-default" @click="goToLogin">{{ login.en.signIn }}</button>
+            <p class="help-block">{{ login.en.helpBlock }}<a href="#" @click="goToRegister">{{ login.en.helpBlockInfo
+                }}</a></p>
+        </form>
+    </div>
+    <div class="modal fade" id="register-error" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="modal-success-icon"></span>
+                <h3>邮箱激活链接已过期</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @click="">重新注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="password-error" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <span class="modal-success-icon"></span>
+            <h3>设置密码验证邮件已失效</h3>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" @click="">重新填写</button>
+        </div>
+    </div>
+</div>
+</div>
+</div> 
         `,
     data: function() {
       return {
@@ -2679,9 +2711,13 @@ var Helpers = (function (){
       };
     },
     created() {
+      console.log(this.locale,this.lang)
       console.log("registerwarp page");
     },
     methods: {
+      goToPassword(){
+        this.$router.push({ path: "/password" });
+      },
       checkboxToggle: function() {
         this.isActive = !this.isActive;
       },
@@ -2695,6 +2731,9 @@ var Helpers = (function (){
 
     props: ["model", "locale", "lang", "sharedLocale"],
     mounted() {
+      $('#password-error').modal();
+      $('#register-error').modal();
+
       $("#check-slide").slider({
         width: 320, // width
         height: 40, // height
@@ -2784,12 +2823,26 @@ var Helpers = (function (){
                                 <p class="status-info">{{register.en.inputVerificationInfo}}</p>
                             </div>
                             
-                            <button type="submit" class=" submit btn btn-default" @click="register">{{ register.en.signIn }}</button>
+                            <button type="submit" class=" submit btn btn-default" @click="registerr">{{ register.en.signIn }}</button>
                             <p class="help-block">{{ register.en.helpBlock }}<a href="#" @click="goToLoginPage">{{ register.en.helpBlockInfo }}</a>  </p>
                         </form>
                 </div>
         </div>
     </div>
+    <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                    <span class="modal-success-icon"></span>
+                        <h3>The activation email has been sent to your registered email address</h3>
+                        <p>Designwang@163.com Please check your email and activate your account.</p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
     `,
         props: ['model', 'locale'],
@@ -2853,8 +2906,247 @@ var Helpers = (function (){
               }
         },
         methods: {
-            register(){
+            registerr(){
+                $('#register').modal('toggle');
+            },
+            modalGoToLoginPage(){
+                $('#register').modal('hide');
+                this.$router.push({path:'/login'})
+            },
+            goToLoginPage(){
+                this.$router.push({path:'/login'})
+            },
+            validateFunc(key){
+                let value = this.Verification[key].value;
+                let status = ''
+                if(key == 'inputName'){ 
+                    status =  this.required(value) ? (this.rangelength(value,[5,25]) ?   'success' : 'false') : 'default';
+                }else if(key == 'inputAdress'){
+                    status =  this.required(value) ? (this.email(value) ?   'success' : 'false') : 'default';
+                }else if(key == 'inputCompany'){
+                    status =  this.required(value) ? (this.rangelength(value,[5,25]) ?   'success' : 'false') : 'default';
+                }else if(key == 'inputPassword'){
+                    this.Verification[key].tips = 0;                    
+                    status =  this.required(value) ? (this.rangelength(value,[5,25]) ?   'success' : 'false') : 'default';
+                    this.passwordInput(key)
+                }else if(key == 'inputConfirm'){
+                    status =  this.required(value) ? (value == this.Verification['inputPassword'].value ?   'success' : 'false') : 'default';
+                }
+                else if(key == 'inputMobile'){
+                    status =  this.required(value) ? (this.phone(value) ?   'success' : 'false') : 'default';
+                }else if(key == 'inputVerification'){
+                    status =  this.required(value) ? (this.rangelength(value,[5,25]) ?   'success' : 'false') : 'default';
+                }
+                key != 'inputPassword' && ( this.Verification[key].tips = 0)
+                this.Verification[key].status = status;
+            },
+            resetDefault(key){
+                this.Verification[key].status == 'default' &&  (this.Verification[key].status = '');
+                key == 'inputPassword' && ( this.Verification[key].tips = 1,this.passwordInput(key))
+            },
+            passwordInput(key){
+                    let level = 0;
+                    let strength1,strength2,strength3;
+                    this.required(this.Verification[key].value) && this.rangelength(this.Verification[key].value,[5,25]) ? (strength1 = 'success',level++) : (strength1 = 'false')
+                    this.required(this.Verification[key].value) &&  this.rangelength(this.Verification[key].value,[5,25]) ? (strength2 = 'success',level++) : (strength2 = 'false')
+                    this.required(this.Verification[key].value) &&  this.rangelength(this.Verification[key].value,[5,25]) ? (strength3 = 'success',level++) : (strength3 = 'false')
+                    this.Verification[key].strength = {
+                        'strength1':strength1,
+                        'strength2':strength2,
+                        'strength3':strength3
+                    }
+                    this.Verification[key].strength.level = level < 2 ? 'low' : (level < 3 ? 'center' :'high');
+            },
+            canClickGetCode(value){
+                this.Verification.inputMobile.isClick = this.required(value) && this.phone(value)
+            },
+            required(value){
+                return value.trim().length > 0;
+            },
+            email: function (value) {
+                if (value == null || this.trim(value) == "") return true;
+                return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value);
+            },
+            //字符串长度的范围
+            rangelength: function (value, param) {
+                if (value == null || this.trim(value) == "") return true;
+                return (value.length >= param[0] && value.length <= param[1]);
+            },
+             //手机号码
+            phone: function (value) {
+                if (value == null || this.trim(value) == "") return true;
+                var rex = /^1[345789]\d{9}$/;
+                return rex.test(value);
+            },
+            //密码
+            password: function (value, param) {
+                if (value == null || this.trim(value) == "") return true;
+                var rex = /^(?=.*\d+)(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[^A-Za-z0-9\s]+)\S{8,16}$/;
+                return rex.test(value);
+            },
+            trim(value) {
+                return value.replace(/(^\s*)|(\s*$)/g, "");
+            }
+        }
+    });
+})();
+(function () {
+    Vue.component("vc-passwordwarp", {
+        template: `
+        <div id="content">
+        <div class="password-container">
+            <div class="password-top">
+                <h2 class="password-title">{{ password.en.passwordTitle }}</h2>
+            </div>
+            <div class="password-box">
+                <div id="password-form">
+                    <form>
+                        <div class="form-group">
+                            <p class="password-info">请输入您的账号，以进行密码重设</p>
+                        </div>
+                        <div class="form-group" :data-status="Verification.inputCompany.status">
+                            <em style="color: #CD454A;" v-if="Verification.inputCompany.icon">*</em>
+                            <input type="text" class="form-control" :placeholder="password.en.inputCompany"
+                                   v-model="Verification.inputCompany.value" @blur="validateFunc('inputCompany')"
+                                   @focus="resetDefault('inputCompany')">
+                            <span class="input-status"></span>
+                            <p class="status-info">{{password.en.inputCompanyInfo}}</p>
+                        </div>
+    
+                        <div class="form-group" :data-status="Verification.inputPassword.status">
+                            <em style="color: #CD454A;" v-if="Verification.inputPassword.icon">*</em>
+                            <input type="password" class="form-control" id="passwordPassword1"
+                                   :placeholder="password.en.inputPassword" v-model="Verification.inputPassword.value"
+                                   @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')"
+                                   @focus="resetDefault('inputPassword')">
+                            <span class="input-status"></span>
+                            <p class="status-info">{{password.en.inputPasswordInfo}}</p>
+                            <div class="status-tips" :class="{'tipShow':Verification.inputPassword.tips}">
+                                <div class="strength">
+                                    <p>{{password.en.statusTips}}</p>
+                                    <div class="strength-box" :data-status="Verification.inputPassword.strength.level">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <p class="strength-info">{{password.en.passwordStatus}}</p>
+                                </div>
+                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1">
+                                    <span></span>{{password.en.strengthStatus1}} </p>
+                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2">
+                                    <span></span>{{password.en.strengthStatus2}} </p>
+                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength3">
+                                    <span></span>{{password.en.strengthStatus3}} </p>
+                            </div>
+                        </div>
+                        <div class="form-group" :data-status="Verification.inputConfirm.status">
+                            <em style="color: #CD454A;" v-if="Verification.inputConfirm.icon">*</em>
+                            <input type="password" class="form-control" :placeholder="password.en.inputConfirm"
+                                   v-model="Verification.inputConfirm.value" @blur="validateFunc('inputConfirm')"
+                                   @focus="resetDefault('inputConfirm')">
+                            <span class="input-status"></span>
+                            <p class="status-info">{{password.en.inputConfirmInfo}}</p>
+                        </div>
+    
+    
+                        <button type="submit" class=" submit btn btn-default" @click="goToResetPassword">确认找回</button>
+                        <button type="submit" class=" submit btn btn-default" @click="passworded">SURE</button>
+                    </form>
+                    <div class="password-status-info">
+                        <span class="modal-success-icon"></span>
+                        <h3>Reset password mail has been sent</h3>
+                        <p>Reset verification has been sent to your email, please check it.</p>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <span class="modal-success-icon"></span>
+                        <h3>Reset password mail has been sent</h3>
+                        <p>Reset verification has been sent to your email, please check it.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" @click="">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `,
+        props: ['model', 'locale'],
+        created() {
+            console.log('login page')
+        },
+        data: function () {
+            return {
+                password: {
+                    en: {
+                        passwordTitle: "Reset Password",
+                        inputName: 'Account name',
+                        inputNameInfo: 'Username is 5-25 characters and needs to contain letters.',
+                        inputAdress: 'Email address',
+                        inputAdressInfo: 'Username is 5-25 characters and needs to contain letters.',
+                        inputCompany: 'Company name',
+                        inputCompanyInfo: 'Username is 5-25 characters and needs to contain letters.',
+                        inputPassword: 'Password',
+                        inputPasswordInfo: 'Username is 5-25 characters and needs to contain letters.',
+                        statusTips: 'Strength',
+                        passwordStatus: 'Low',
+                        strengthStatus1: '5 to 25 charcters',
+                        strengthStatus2: 'Contains only letters,numbers and symbols ',
+                        strengthStatus3: 'Contains at least two of the following: letters,numbers,symbols.',
+                        inputConfirm: 'Password',
+                        inputConfirmInfo: 'Username is 5-25 characters and needs to contain letters.',
+                        inputMobile: 'Mobile number',
+                        inputNumberMobile: '+86',
+                        inputMobileInfo: 'Username is 5-25 characters and needs to contain letters.',
+                        inputVerification: 'Verification code',
+                        inputVerificationBtn: 'Get code',
+                        inputVerificationInfo: 'Username is 5-25 characters and needs to contain letters.',
+                        signIn: '确认找回',
+                        helpBlock: 'Don’t have an account?',
+                    }
+                },
+                Verification:{
+                    inputName:{value:'', icon:1,status: ''},
+                    inputCompany:{value:'', icon:1,status: ''},
+                    inputAdress:{value:'', icon:1,status: ''},
+                    inputPassword:{value:'', icon:1,status: '',tips:0,strength:{level:"low",strength1:"false",strength2:"false",strength3:"false"}},
+                    inputConfirm:{value:'', icon:1,status: ''},
+                    inputMobile:{value:'', icon:1,status: '',isClick:false},
+                    inputVerification:{value:'', icon:1,status: ''},
+                },
+            }
+        },
+        watch:{
+            Verification: {
+                handler(newValue, oldValue) {
+                    for (let key in newValue) {
+                        if (newValue.hasOwnProperty(key)) {
+                            let element = newValue[key];
+                            newValue[key].icon = Number(!this.required(newValue[key].value));
+                        }
+                    }
+                },
+                deep: true
+              }
+        },
+        methods: {
+            goToResetPassword(){
 
+            },
+            passworded(){
+                $('#password').modal('toggle');
+            },
+            modalGoToLoginPage(){
+                $('#password').modal('hide');
+                this.$router.push({path:'/login'})
             },
             goToLoginPage(){
                 this.$router.push({path:'/login'})
@@ -3370,12 +3662,20 @@ var Helpers = (function (){
         meta:{
             requireAuth:true,//验证用户能不能跳转这个页面true能false不能
         }
-    },{
+    },
+    {
+        path: "/password",
+        component:Vue.component("vc-passwordwarp"),
+        meta:{
+            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+        }
+    },
+    {
         path: "/",
         redirect: "/login"
     });
     const router = new VueRouter({
-        mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
+        // mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
         routes
     });
 
@@ -3472,7 +3772,7 @@ var Helpers = (function (){
                     },
                     computed: {
                         renderForCurrentHtml:function(){
-                            return this.$route.path == '/login' || this.$route.path == '/register'
+                            return this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/password'
                         },
                         localeForCurrentRoute: function(){
                             let thisvue = this;
