@@ -9,18 +9,9 @@
             <div class="password-box">
                 <div id="password-form">
                     <form>
-                        <div class="form-group">
-                            <p class="password-info">请输入您的账号，以进行密码重设</p>
+                    <div class="form-group">
+                            <p class="password-info">账号：23648235934875</p>
                         </div>
-                        <div class="form-group" :data-status="Verification.inputCompany.status">
-                            <em style="color: #CD454A;" v-if="Verification.inputCompany.icon">*</em>
-                            <input type="text" class="form-control" :placeholder="password.en.inputCompany"
-                                   v-model="Verification.inputCompany.value" @blur="validateFunc('inputCompany')"
-                                   @focus="resetDefault('inputCompany')">
-                            <span class="input-status"></span>
-                            <p class="status-info">{{password.en.inputCompanyInfo}}</p>
-                        </div>
-    
                         <div class="form-group" :data-status="Verification.inputPassword.status">
                             <em style="color: #CD454A;" v-if="Verification.inputPassword.icon">*</em>
                             <input type="password" class="form-control" id="passwordPassword1"
@@ -57,7 +48,6 @@
                         </div>
     
     
-                        <button type="submit" class=" submit btn btn-default" @click="goToResetPassword">确认找回</button>
                         <button type="submit" class=" submit btn btn-default" @click="passworded">SURE</button>
                     </form>
                     <div class="password-status-info">
@@ -67,20 +57,6 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <span class="modal-success-icon"></span>
-                        <h3>Reset password mail has been sent</h3>
-                        <p>Reset verification has been sent to your email, please check it.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="">OK</button>
                     </div>
                 </div>
             </div>

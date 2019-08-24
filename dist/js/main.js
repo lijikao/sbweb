@@ -2629,7 +2629,7 @@ var Helpers = (function (){
     </div>
     <div id="login-form">
         <h2 class="login-title">{{ login.en.loginTitle }}</h2>
-        <div class="email-status-info">
+        <div class="password-status-info">
             <p>重置密码尚未激活，请<a href="#">查看激活邮件</a>，激活后重新登录</p>
         </div>
         <div class="email-status-info">
@@ -2719,7 +2719,7 @@ var Helpers = (function (){
     },
     methods: {
       goToPassword(){
-        this.$router.push({ path: "/password" });
+        this.$router.push({ path: "/forgetPassword" });
       },
       checkboxToggle: function() {
         this.isActive = !this.isActive;
@@ -2734,8 +2734,8 @@ var Helpers = (function (){
 
     props: ["model", "locale", "lang", "sharedLocale"],
     mounted() {
-      $('#password-error').modal();
-      $('#register-error').modal();
+      // $('#password-error').modal();
+      // $('#register-error').modal();
 
       $("#check-slide").slider({
         width: 320, // width
@@ -3015,54 +3015,8 @@ var Helpers = (function (){
                             <span class="input-status"></span>
                             <p class="status-info">{{password.en.inputCompanyInfo}}</p>
                         </div>
-    
-                        <div class="form-group" :data-status="Verification.inputPassword.status">
-                            <em style="color: #CD454A;" v-if="Verification.inputPassword.icon">*</em>
-                            <input type="password" class="form-control" id="passwordPassword1"
-                                   :placeholder="password.en.inputPassword" v-model="Verification.inputPassword.value"
-                                   @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')"
-                                   @focus="resetDefault('inputPassword')">
-                            <span class="input-status"></span>
-                            <p class="status-info">{{password.en.inputPasswordInfo}}</p>
-                            <div class="status-tips" :class="{'tipShow':Verification.inputPassword.tips}">
-                                <div class="strength">
-                                    <p>{{password.en.statusTips}}</p>
-                                    <div class="strength-box" :data-status="Verification.inputPassword.strength.level">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                    <p class="strength-info">{{password.en.passwordStatus}}</p>
-                                </div>
-                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1">
-                                    <span></span>{{password.en.strengthStatus1}} </p>
-                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2">
-                                    <span></span>{{password.en.strengthStatus2}} </p>
-                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength3">
-                                    <span></span>{{password.en.strengthStatus3}} </p>
-                            </div>
-                        </div>
-                        <div class="form-group" :data-status="Verification.inputConfirm.status">
-                            <em style="color: #CD454A;" v-if="Verification.inputConfirm.icon">*</em>
-                            <input type="password" class="form-control" :placeholder="password.en.inputConfirm"
-                                   v-model="Verification.inputConfirm.value" @blur="validateFunc('inputConfirm')"
-                                   @focus="resetDefault('inputConfirm')">
-                            <span class="input-status"></span>
-                            <p class="status-info">{{password.en.inputConfirmInfo}}</p>
-                        </div>
-    
-    
-                        <button type="submit" class=" submit btn btn-default" @click="goToResetPassword">确认找回</button>
-                        <button type="submit" class=" submit btn btn-default" @click="passworded">SURE</button>
+                        <button type="submit" class=" submit btn btn-default" @click="passworded">确认找回</button>
                     </form>
-                    <div class="password-status-info">
-                        <span class="modal-success-icon"></span>
-                        <h3>Reset password mail has been sent</h3>
-                        <p>Reset verification has been sent to your email, please check it.</p>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -3075,7 +3029,7 @@ var Helpers = (function (){
                         <p>Reset verification has been sent to your email, please check it.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="">OK</button>
+                        <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
                     </div>
                 </div>
             </div>
@@ -3239,18 +3193,9 @@ var Helpers = (function (){
             <div class="password-box">
                 <div id="password-form">
                     <form>
-                        <div class="form-group">
-                            <p class="password-info">请输入您的账号，以进行密码重设</p>
+                    <div class="form-group">
+                            <p class="password-info">账号：23648235934875</p>
                         </div>
-                        <div class="form-group" :data-status="Verification.inputCompany.status">
-                            <em style="color: #CD454A;" v-if="Verification.inputCompany.icon">*</em>
-                            <input type="text" class="form-control" :placeholder="password.en.inputCompany"
-                                   v-model="Verification.inputCompany.value" @blur="validateFunc('inputCompany')"
-                                   @focus="resetDefault('inputCompany')">
-                            <span class="input-status"></span>
-                            <p class="status-info">{{password.en.inputCompanyInfo}}</p>
-                        </div>
-    
                         <div class="form-group" :data-status="Verification.inputPassword.status">
                             <em style="color: #CD454A;" v-if="Verification.inputPassword.icon">*</em>
                             <input type="password" class="form-control" id="passwordPassword1"
@@ -3287,7 +3232,6 @@ var Helpers = (function (){
                         </div>
     
     
-                        <button type="submit" class=" submit btn btn-default" @click="goToResetPassword">确认找回</button>
                         <button type="submit" class=" submit btn btn-default" @click="passworded">SURE</button>
                     </form>
                     <div class="password-status-info">
@@ -3297,20 +3241,6 @@ var Helpers = (function (){
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <span class="modal-success-icon"></span>
-                        <h3>Reset password mail has been sent</h3>
-                        <p>Reset verification has been sent to your email, please check it.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="">OK</button>
                     </div>
                 </div>
             </div>
@@ -4058,4 +3988,5 @@ var Helpers = (function (){
         }
 
     });
+    
 })();

@@ -159,14 +159,16 @@
   vertical-align: middle;
   margin-bottom: 0;
 }
-#login-form .email-status-info {
+#login-form .email-status-info,
+#login-form .password-status-info {
   background: rgba(248, 221, 218, 0.5);
   border: 1px solid #cd454a;
   border-radius: 2px;
   padding: 5px 9px;
   margin-bottom: 20px;
 }
-#login-form .email-status-info p {
+#login-form .email-status-info p,
+#login-form .password-status-info p {
   display: inline-block;
   font-size: 12px;
   color: #333333;
@@ -174,7 +176,8 @@
   vertical-align: middle;
   margin-bottom: 0;
 }
-#login-form .email-status-info p a {
+#login-form .email-status-info p a,
+#login-form .password-status-info p a {
   font-size: 12px;
   color: #007bff;
   letter-spacing: 0;
@@ -815,6 +818,7 @@ footer p {
   border-radius: 4px;
 }
 #password-form .password-status-info {
+  display: none;
   text-align: center;
 }
 #password-form .password-status-info .modal-body {

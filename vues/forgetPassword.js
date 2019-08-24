@@ -20,54 +20,8 @@
                             <span class="input-status"></span>
                             <p class="status-info">{{password.en.inputCompanyInfo}}</p>
                         </div>
-    
-                        <div class="form-group" :data-status="Verification.inputPassword.status">
-                            <em style="color: #CD454A;" v-if="Verification.inputPassword.icon">*</em>
-                            <input type="password" class="form-control" id="passwordPassword1"
-                                   :placeholder="password.en.inputPassword" v-model="Verification.inputPassword.value"
-                                   @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')"
-                                   @focus="resetDefault('inputPassword')">
-                            <span class="input-status"></span>
-                            <p class="status-info">{{password.en.inputPasswordInfo}}</p>
-                            <div class="status-tips" :class="{'tipShow':Verification.inputPassword.tips}">
-                                <div class="strength">
-                                    <p>{{password.en.statusTips}}</p>
-                                    <div class="strength-box" :data-status="Verification.inputPassword.strength.level">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                    <p class="strength-info">{{password.en.passwordStatus}}</p>
-                                </div>
-                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1">
-                                    <span></span>{{password.en.strengthStatus1}} </p>
-                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2">
-                                    <span></span>{{password.en.strengthStatus2}} </p>
-                                <p class="strength-status" :data-status="Verification.inputPassword.strength.strength3">
-                                    <span></span>{{password.en.strengthStatus3}} </p>
-                            </div>
-                        </div>
-                        <div class="form-group" :data-status="Verification.inputConfirm.status">
-                            <em style="color: #CD454A;" v-if="Verification.inputConfirm.icon">*</em>
-                            <input type="password" class="form-control" :placeholder="password.en.inputConfirm"
-                                   v-model="Verification.inputConfirm.value" @blur="validateFunc('inputConfirm')"
-                                   @focus="resetDefault('inputConfirm')">
-                            <span class="input-status"></span>
-                            <p class="status-info">{{password.en.inputConfirmInfo}}</p>
-                        </div>
-    
-    
-                        <button type="submit" class=" submit btn btn-default" @click="goToResetPassword">确认找回</button>
-                        <button type="submit" class=" submit btn btn-default" @click="passworded">SURE</button>
+                        <button type="submit" class=" submit btn btn-default" @click="passworded">确认找回</button>
                     </form>
-                    <div class="password-status-info">
-                        <span class="modal-success-icon"></span>
-                        <h3>Reset password mail has been sent</h3>
-                        <p>Reset verification has been sent to your email, please check it.</p>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -80,7 +34,7 @@
                         <p>Reset verification has been sent to your email, please check it.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="">OK</button>
+                        <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
                     </div>
                 </div>
             </div>

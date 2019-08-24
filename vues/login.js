@@ -10,7 +10,7 @@
     </div>
     <div id="login-form">
         <h2 class="login-title">{{ login.en.loginTitle }}</h2>
-        <div class="email-status-info">
+        <div class="password-status-info">
             <p>重置密码尚未激活，请<a href="#">查看激活邮件</a>，激活后重新登录</p>
         </div>
         <div class="email-status-info">
@@ -100,7 +100,7 @@
     },
     methods: {
       goToPassword(){
-        this.$router.push({ path: "/password" });
+        this.$router.push({ path: "/forgetPassword" });
       },
       checkboxToggle: function() {
         this.isActive = !this.isActive;
@@ -115,8 +115,8 @@
 
     props: ["model", "locale", "lang", "sharedLocale"],
     mounted() {
-      $('#password-error').modal();
-      $('#register-error').modal();
+      // $('#password-error').modal();
+      // $('#register-error').modal();
 
       $("#check-slide").slider({
         width: 320, // width
