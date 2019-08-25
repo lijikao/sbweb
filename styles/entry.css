@@ -818,7 +818,6 @@ footer p {
   border-radius: 4px;
 }
 #password-form .password-status-info {
-  display: none;
   text-align: center;
 }
 #password-form .password-status-info .modal-body {

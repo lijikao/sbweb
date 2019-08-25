@@ -8,7 +8,7 @@
             </div>
             <div class="password-box">
                 <div id="password-form">
-                    <form>
+                    <form v-if="isvisible">
                     <div class="form-group">
                             <p class="password-info">账号：23648235934875</p>
                         </div>
@@ -48,9 +48,9 @@
                         </div>
     
     
-                        <button type="submit" class=" submit btn btn-default" @click="passworded">SURE</button>
+                        <button type="submit" class=" submit btn btn-default" @click="resetpassword">SURE</button>
                     </form>
-                    <div class="password-status-info">
+                    <div class="password-status-info" v-if="!isvisible">
                         <span class="modal-success-icon"></span>
                         <h3>Reset password mail has been sent</h3>
                         <p>Reset verification has been sent to your email, please check it.</p>
@@ -69,6 +69,7 @@
         },
         data: function () {
             return {
+                isvisible:true,
                 password: {
                     en: {
                         passwordTitle: "Reset Password",
@@ -122,6 +123,11 @@
               }
         },
         methods: {
+            resetpassword(){
+                  if(this.Verification.inputPassword.status == 'success' && this.Verification.inputConfirm.status == 'success'){
+                     this.isvisible = false;
+                  }
+            },
             goToResetPassword(){
 
             },

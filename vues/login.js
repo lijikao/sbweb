@@ -4,12 +4,12 @@
   <div id='content'>
     <div id="login-adv">
         <div class="main-info">{{lang}}
-            <h3>{{login.en.mainInfo}}</h3>
-            <p>{{ login.en.subInfo }}</p>
+            <h3>{{locale.mainInfo}}</h3>
+            <p>{{ locale.subInfo }}</p>
         </div>
     </div>
     <div id="login-form">
-        <h2 class="login-title">{{ login.en.loginTitle }}</h2>
+        <h2 class="login-title">{{ locale.loginTitle }}</h2>
         <div class="password-status-info">
             <p>重置密码尚未激活，请<a href="#">查看激活邮件</a>，激活后重新登录</p>
         </div>
@@ -18,28 +18,28 @@
         </div>
         <div class="login-status-info">
             <span></span>
-            <p>{{ login.en.loginStatusinfo }}</p>
+            <p>{{ locale.loginStatusinfo }}</p>
         </div>
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" :placeholder=" login.en.inputName ">
+                <input type="text" class="form-control" :placeholder=" locale.inputName ">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" :placeholder=" login.en.inputPassword ">
+                <input type="password" class="form-control" :placeholder=" locale.inputPassword ">
             </div>
             <div class="checkbox">
                 <label v-on:click="checkboxToggle">
-                    <span class="s-checkbox" type="checkbox" :class="{'active':isActive}"></span> {{ login.en.rememberMe
+                    <span class="s-checkbox" type="checkbox" :class="{'active':isActive}"></span> {{ locale.rememberMe
                     }}
                 </label>
-                <p class="forget-password"><a href="javascript:void(0);" @click="goToPassword">{{ login.en.forget }}</a>
+                <p class="forget-password"><a href="javascript:void(0);" @click="goToPassword">{{ locale.forget }}</a>
                 </p>
             </div>
             <div class="form-group">
                 <div id="check-slide"></div>
             </div>
-            <button type="submit" class="submit btn btn-default" @click="goToLogin">{{ login.en.signIn }}</button>
-            <p class="help-block">{{ login.en.helpBlock }}<a href="#" @click="goToRegister">{{ login.en.helpBlockInfo
+            <button type="submit" class="submit btn btn-default" @click="goToLogin">{{ locale.signIn }}</button>
+            <p class="help-block">{{ locale.helpBlock }}<a href="#" @click="goToRegister">{{ locale.helpBlockInfo
                 }}</a></p>
         </form>
     </div>
@@ -73,25 +73,7 @@
         `,
     data: function() {
       return {
-        isActive: false,
-        login: {
-          en: {
-            mainInfo: "Brand Intelligence & Brand Protection",
-            subInfo:
-              "Making digital commerce trustworthy through big data, AI and blockchain",
-            loginTitle: "Log in",
-            loginStatusinfo: "Login or login password is incorrect",
-            inputName: "Jane Doe",
-            inputPassword: "Password",
-            rememberMe: "Remember me",
-            forget: "Forget Password ?",
-            forgetLink: "#",
-            signIn: "Sign in",
-            helpBlock: "Don’t have an account?",
-            helpBlockInfo: "Sign up",
-            helpBlockLink: "#"
-          }
-        }
+        isActive: false
       };
     },
     created() {

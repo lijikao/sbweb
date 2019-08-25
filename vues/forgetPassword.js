@@ -20,7 +20,7 @@
                             <span class="input-status"></span>
                             <p class="status-info">{{password.en.inputCompanyInfo}}</p>
                         </div>
-                        <button type="submit" class=" submit btn btn-default" @click="passworded">确认找回</button>
+                        <button type="submit" class=" submit btn btn-default" @click="forgetpassword">确认找回</button>
                     </form>
                 </div>
             </div>
@@ -100,11 +100,13 @@
               }
         },
         methods: {
+            forgetpassword() {
+                if(this.Verification.inputCompany.status == 'success'){
+                    $('#password').modal('toggle');
+                 }
+            },
             goToResetPassword(){
 
-            },
-            passworded(){
-                $('#password').modal('toggle');
             },
             modalGoToLoginPage(){
                 $('#password').modal('hide');

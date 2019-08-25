@@ -103,6 +103,7 @@
 
     let _backendBaseUrl = g_BACKEND_API_BASE_URL;
     let _fetchFromDataSource = function(dsname, since, to, args, callback, sender){
+        debugger
         let ds = _datasources[dsname];
         if (true === wna.IsNullOrEmpty(ds)){
             throw new wna.NullReferenceException("Datasource with name = " + dsname);
@@ -304,10 +305,6 @@
 
     let _localeSources = [
         {
-            path: '/',
-            source: 'app.json'
-        },
-              {
             path: '/login',
             source: 'login.json'
         }
@@ -378,90 +375,165 @@
         return [en];
     }
 
-
-    const routes = _.chain(_sidemenuModel).flatMapDeep(_sidemenu_flattener).filter((en) => {
-        return ((true !== wna.IsNullOrEmpty(en.target)) && (true !== wna.IsNullOrEmpty(en.viewComponent)));
-    }).map((en) => {   
-
-        let localesrc = en.localeSource;
-        if (true !== wna.IsNullOrEmpty(localesrc)){
-            _localeSources.push({
+    function xxx(){
+        const dy_routes = _.chain(_sidemenuModel).flatMapDeep(_sidemenu_flattener).filter((en) => {
+            return ((true !== wna.IsNullOrEmpty(en.target)) && (true !== wna.IsNullOrEmpty(en.viewComponent)));
+        }).map((en) => {   
+    
+            let localesrc = en.localeSource;
+            debugger
+            if (true !== wna.IsNullOrEmpty(localesrc)){
+                _localeSources.push({
+                    path: '/' + en.target,
+                    source: localesrc
+                });
+            }
+    
+            return {
                 path: '/' + en.target,
-                source: localesrc
-            });
-        }
-
-        return {
-            path: '/' + en.target,
-            props: (function(o){
-                return function(r){
-                    let path = o.target;
-                    let slotProps = {
-                        path
+                props: (function(o){
+                    return function(r){
+                        let path = o.target;
+                        let slotProps = {
+                            path
+                        };
+    /*
+                        Object.defineProperty(slotProps, 'locale', {
+                            get: function(){
+                                console.log('---------- locale getter is invoked for ', path);
+                                return _.pick(_appViewModel.locales[_appViewState.lang], ['shared', path]);
+                            }
+                        });
+    */
+                        return slotProps;
+                        /*
+                        let locale = _appViewModel.locales[_appViewState.lang];
+                        locale = _.pick(locale, [o.target, 'shared']);
+                        let path = en.target;
+                        let menu = en.id;
+                        //let ret = { locale }; //{ path: r.path, locale: locale };
+                        //console.log('------- route prop ', ret);
+                        return { path, locale };
+                        */
+    
                     };
-/*
-                    Object.defineProperty(slotProps, 'locale', {
-                        get: function(){
-                            console.log('---------- locale getter is invoked for ', path);
-                            return _.pick(_appViewModel.locales[_appViewState.lang], ['shared', path]);
-                        }
-                    });
-*/
-                    return slotProps;
-                    /*
-                    let locale = _appViewModel.locales[_appViewState.lang];
-                    locale = _.pick(locale, [o.target, 'shared']);
-                    let path = en.target;
-                    let menu = en.id;
-                    //let ret = { locale }; //{ path: r.path, locale: locale };
-                    //console.log('------- route prop ', ret);
-                    return { path, locale };
-                    */
-
-                };
-            })(en),
-            component: Vue.component(en.viewComponent),
-            dataSource: en.dataSource,
-            menuid: en.id
-        };
-    }).value();
-
-    routes.push( {
+                })(en),
+                component: Vue.component(en.viewComponent),
+                dataSource: en.dataSource,
+                menuid: en.id,
+                meta:{
+                    requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+                }
+            };
+        }).value();
+        dy_routes.push( {
+            path: '/',
+            redirect:'/CounterfeitProduct',
+            meta:{
+                requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+            }
+          })
+        //   _localeSources.unshift({
+        //         path: '/',
+        //         source: 'app.json'
+        //   })
+        //    _localesLoader(0, {}, function (locales) {
+        //         console.log('--------- loaded locales: ', locales);
+        //      _appViewModel.locales.push(locales)})
+        return dy_routes
+    }
+ 
+    const routes = [{
         path: "/login",
         component:Vue.component("vc-loginwarp"),
         meta:{
-            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+            requireAuth:false,//验证用户能不能跳转这个页面true能false不能
         }
     },
-    {
-        path: "/register",
-        component:Vue.component("vc-registerwarp"),
-        meta:{
-            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
-        }
-    },
-    {
-        path: "/forgetPassword",
-        component:Vue.component("vc-forgetpasswordwarp"),
-        meta:{
-            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
-        }
-    },
-    {
-        path: "/resetPassword",
-        component:Vue.component("vc-resetpasswordwarp"),
-        meta:{
-            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
-        }
-    },
-    {
-        path: "/",
-        redirect: "/login"
-    });
+    // {
+    //     path: "/register",
+    //     component:Vue.component("vc-registerwarp"),
+    //     meta:{
+    //         requireAuth:false,//验证用户能不能跳转这个页面true能false不能
+    //     }
+    // },
+    // {
+    //     path: "/forgetPassword",
+    //     component:Vue.component("vc-forgetpasswordwarp"),
+    //     meta:{
+    //         requireAuth:false,//验证用户能不能跳转这个页面true能false不能
+    //     }
+    // },
+    // {
+    //     path: "/resetPassword",
+    //     component:Vue.component("vc-resetpasswordwarp"),
+    //     meta:{
+    //         requireAuth:false,//验证用户能不能跳转这个页面true能false不能
+    //     }
+    // },
+    // {
+    //     path: '/CounterfeitProduct',
+    //     meta:{
+    //         requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+    //     }
+    //   },
+    //   {
+    //     path: '/CounterfeitStore',
+    //     meta:{
+    //         requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+    //     }
+    //   },
+    //   {
+    //     path: '/',
+    //     redirect:'/login',
+    //     requireAuth:true,//验证用户能不能跳转这个页面true能false不能
+    //   },
+    //   {
+    //     path: '*',
+    //     redirect:'/login',
+    //     requireAuth:false,//验证用户能不能跳转这个页面true能false不能
+    //   }
+   ]
     const router = new VueRouter({
         // mode: 'history', //default mode is "hash" mode, history mode allow browser navigation
         routes
     });
+    var flag = true
+    router.beforeEach(async (to,from,next)=>{
+        debugger
+        // if(to.meta.requiresAuth===false){
+        //   //不需要登录的直接放行
+        //   next()
+        // // }
+        // // else if(!authorize.checkLogin()){
+        // //   //如果页面需要登录，且登录失效，进入登录页面
+        // //   next({
+        // //     path:config.login_path,
+        // //     query: { redirect: to.fullPath }
+        // //   })
+        // }else {
+          //已经登录
+          //是否已经拉取menu，权限等信息
+        //   if(!store.state.menu_loaded){
+        //     //如果页面还没有拉取menu
+        //     await netwrok.post(api.get_user_info,'',true).then((res)=>{
+        //       store.commit('SET_USER_INFO',res)
+               
+              //获取动态路由
+                // if(flag){
+                //     flag = false
+                //     let dy_routers= xxx();
+                //     //动态添加路由
+                //         router.addRoutes(dy_routers)
+                //     next({ ...to, replace: true })
+                // }
+            
+            //   }else{
+            //       next()
+              
+        // }
+       
+      })
 
     //app zapper
     $(document).ready(function () {
@@ -486,12 +558,12 @@
                         }
                         */
                         onLoginout:function(){
-                            this.$router.push({path:'/'})
+                            this.$router.push({path:'/login'})
                         },
                         onRequestData: function (path, startDate, endDate, args, callback, sender) {
                             let thisvue = this;
                             let route = _.find(routes, { path: '/' + path });
-
+                            
                             //console.log('--------------- onRequestData: ', arguments);
                             _fetchFromDataSource(route.dataSource, startDate, endDate, args, callback, sender);
                         },
@@ -547,6 +619,7 @@
                     },
                     watch: {
                         $route(to, from) {
+                            console.log( this.$router)
                             this.viewState.currentRoute = this.$router.currentRoute.path;
                             this.makeCurrentTitle();
                         },
@@ -559,11 +632,12 @@
                             return this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/forgetPassword' || this.$route.path == '/resetPassword'
                         },
                         localeForCurrentRoute: function(){
+                            debugger
                             let thisvue = this;
                             let locales = thisvue.currentLocale;
                             let route = thisvue.viewState.currentRoute;
                             let locale = _appViewModel.locales[_appViewState.lang];
-                            console.log(locale)
+                            
                             /*
                             let locale = _.merge({}, locales[route], { shared: locales['shared'] });
                             return locale;
@@ -581,6 +655,7 @@
                     },
                     beforeMount: function(){
                         // this.xxx = this.$route.path == 'login' || this.$route.path == 'register'
+                        console.log( this.$router)
                         this.viewState.currentRoute = this.$router.currentRoute.path;
                         this.makeCurrentTitle();
                     },
