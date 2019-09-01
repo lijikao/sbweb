@@ -1,12 +1,15 @@
 (function () {
-    Vue.component("vc-forgetpasswordwarp", {
+    Vue.component("vc-passwordwarp", {
         template: `
         <div id="content">
         <div class="password-container">
-            <div class="password-top">
+            <div class="password-top" v-if="isforgetPassword">
                 <h2 class="password-title">{{ password.en.passwordTitle }}</h2>
             </div>
-            <div class="password-box">
+            <div class="password-top" v-if="isresetPassword">
+            <h2 class="password-title">{{ password.en.resetPasswordTitle }}</h2>
+            </div>
+            <div class="password-box" v-if="isforgetPassword">
                 <div id="password-form">
                     <form>
                         <div class="form-group">
@@ -24,6 +27,59 @@
                     </form>
                 </div>
             </div>
+            <div class="password-box" v-if="isresetPassword">
+            <div id="password-form">
+                <form v-if="isvisible">
+                <div class="form-group">
+                        <p class="password-info">账号：{{Verification.inputCompany.value}}</p>
+                    </div>
+                    <div class="form-group" :data-status="Verification.inputPassword.status">
+                        <em style="color: #CD454A;" v-if="Verification.inputPassword.icon">*</em>
+                        <input type="password" class="form-control" id="passwordPassword1"
+                               :placeholder="password.en.inputPassword" v-model="Verification.inputPassword.value"
+                               @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')"
+                               @focus="resetDefault('inputPassword')">
+                        <span class="input-status"></span>
+                        <p class="status-info">{{password.en.inputPasswordInfo}}</p>
+                        <div class="status-tips" :class="{'tipShow':Verification.inputPassword.tips}">
+                            <div class="strength">
+                                <p>{{password.en.statusTips}}</p>
+                                <div class="strength-box" :data-status="Verification.inputPassword.strength.level" v-model="level">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                <p class="strength-info">{{level}}</p>
+                            </div>
+                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1">
+                                <span></span>{{password.en.strengthStatus1}} </p>
+                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2">
+                                <span></span>{{password.en.strengthStatus2}} </p>
+                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength3">
+                                <span></span>{{password.en.strengthStatus3}} </p>
+                        </div>
+                    </div>
+                    <div class="form-group" :data-status="Verification.inputConfirm.status">
+                        <em style="color: #CD454A;" v-if="Verification.inputConfirm.icon">*</em>
+                        <input type="password" class="form-control" :placeholder="password.en.inputConfirm"
+                               v-model="Verification.inputConfirm.value" @blur="validateFunc('inputConfirm')"
+                               @focus="resetDefault('inputConfirm')">
+                        <span class="input-status"></span>
+                        <p class="status-info">{{password.en.inputConfirmInfo}}</p>
+                    </div>
+
+
+                    <button type="submit" class=" submit btn btn-default" @click="resetpassword">SURE</button>
+                </form>
+                <div class="password-status-info" v-if="!isvisible">
+                    <span class="modal-success-icon"></span>
+                    <h3>Reset password mail has been sent</h3>
+                    <p>Reset verification has been sent to your email, please check it.</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -34,10 +90,12 @@
                         <p>Reset verification has been sent to your email, please check it.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="modalGoToLoginPage">OK</button>
+                        <button type="button" class="btn btn-primary" @click="modalGoToresetPage">OK</button>
                     </div>
                 </div>
             </div>
+        </div>
+            
         </div>
     </div>
     `,
@@ -47,9 +105,13 @@
         },
         data: function () {
             return {
+                isforgetPassword:true,
+                isresetPassword:false,
+                isvisible:true,
                 password: {
                     en: {
-                        passwordTitle: "Reset Password",
+                        passwordTitle: "Forget Password",
+                        resetPasswordTitle: "Reset Password",
                         inputName: 'Account name',
                         inputNameInfo: 'Username is 5-25 characters and needs to contain letters.',
                         inputAdress: 'Email address',
@@ -100,6 +162,16 @@
               }
         },
         methods: {
+            modalGoToresetPage(){
+                $('#password').modal('hide');
+                this.isforgetPassword = false;
+                this.isresetPassword = true;
+            },
+            resetpassword(){
+                if(this.Verification.inputPassword.status == 'success' && this.Verification.inputConfirm.status == 'success'){
+                   this.isvisible = false;
+                }
+          },
             forgetpassword() {
                 if(this.Verification.inputCompany.status == 'success'){
                     $('#password').modal('toggle');
@@ -154,7 +226,8 @@
                         'strength2':strength2,
                         'strength3':strength3
                     }
-                    this.Verification[key].strength.level = level < 2 ? 'low' : (level < 3 ? 'center' :'high');
+                    this.Verification[key].strength.level = level < 2 ? 'low' : (level < 3 ? 'center' :'height');
+                    this.level = this.Verification[key].strength.level;
             },
             canClickGetCode(value){
                 this.Verification.inputMobile.isClick = this.required(value) && this.phone(value)

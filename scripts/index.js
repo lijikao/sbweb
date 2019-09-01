@@ -441,15 +441,8 @@
         }
     },
     {
-        path: "/forgetPassword",
-        component:Vue.component("vc-forgetpasswordwarp"),
-        meta:{
-            requireAuth:true,//验证用户能不能跳转这个页面true能false不能
-        }
-    },
-    {
-        path: "/resetPassword",
-        component:Vue.component("vc-resetpasswordwarp"),
+        path: "/password",
+        component:Vue.component("vc-passwordwarp"),
         meta:{
             requireAuth:true,//验证用户能不能跳转这个页面true能false不能
         }
@@ -556,7 +549,7 @@
                     },
                     computed: {
                         renderForCurrentHtml:function(){
-                            return this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/forgetPassword' || this.$route.path == '/resetPassword'
+                            return this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/password' 
                         },
                         localeForCurrentRoute: function(){
                             let thisvue = this;

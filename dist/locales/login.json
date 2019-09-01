@@ -12,7 +12,9 @@
         "signIn": "Sign in",
         "helpBlock": "Don’t have an account?",
         "helpBlockInfo": "Sign up",
-        "helpBlockLink": "#"
+        "helpBlockLink": "#",
+        "inputAdressInfo":"123",
+        "passwordInfo":"456"
       },
     "en": {
         "mainInfo": "Brand Intelligence & Brand Protection",
@@ -27,6 +29,8 @@
         "signIn": "Sign in",
         "helpBlock": "Don’t have an account?",
         "helpBlockInfo": "Sign up",
-        "helpBlockLink": "#"
+        "helpBlockLink": "#",
+        "inputAdressInfo":"123",
+        "passwordInfo":"456"
       }
 }

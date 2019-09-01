@@ -57,6 +57,7 @@
 
 #login-form .form-group {
   margin-bottom: 20px;
+  position: relative;
 }
 #login-form .form-group input {
   font-size: 12px;
@@ -153,7 +154,7 @@
   border-radius: 2px;
   padding: 5px 9px;
   margin-bottom: 20px;
-  //   display: none;
+    display: none;
   span {
     width: 16px;
     height: 16px;
@@ -180,7 +181,7 @@
   border-radius: 2px;
   padding: 5px 9px;
   margin-bottom: 20px;
-  // display: none;
+  display: none;
   p {
     display: inline-block;
     font-size: 12px;
@@ -195,6 +196,41 @@
       line-height: 20px;
       text-decoration: underline;
     }
+  }
+}
+#login-form .input-status {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  position: absolute;
+  right:-25px;
+  top:14px;
+}
+#login-form .status-info {
+  font-size: 12px;
+  color: #cd454a;
+  line-height: 18px;
+  padding-top: 5px;
+  display: none;
+}
+#login-form .form-group {
+  &[data-status="success"] .input-status {
+    background: url("../assets/entry/status-success.svg") center no-repeat;
+  }
+  &[data-status="false"] .input-status {
+    background: url("../assets/entry/status-false.svg") center no-repeat;
+  }
+  &[data-status="false"] .status-info {
+    display: block;
+  }
+  &[data-status="false"] input {
+    border: 1px solid #cd454a;
+  }
+  &[data-status="default"] input {
+    color: #cd454a;
+    border: 1px solid #cd454a;
   }
 }
 
@@ -448,12 +484,18 @@
       }
       &[data-status="center"] {
         span:nth-child(n-1) {
-          background: #cd454a;
+          background: yellow;
+        }
+        &+.strength-info {
+          color:yellow;
         }
       }
       &[data-status="height"] {
         span {
-          background: #cd454a;
+          background: rgb(36, 204, 184);
+        }
+        &+.strength-info {
+          color:rgb(36, 204, 184);
         }
       }
     }

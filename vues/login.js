@@ -21,12 +21,16 @@
             <p>{{ locale.loginStatusinfo }}</p>
         </div>
         <form>
-            <div class="form-group">
-                <input type="text" class="form-control" :placeholder=" locale.inputName ">
+            <div class="form-group" :data-status="Verification.inputAdress.status">
+                <input type="text" class="form-control" :placeholder=" locale.inputName " v-model="Verification.inputAdress.value" @blur="validateFunc('inputAdress')" @focus="resetDefault('inputAdress')">
+                <span class="input-status"></span> 
+                <p class="status-info">{{locale.inputAdressInfo}}</p> 
             </div>
-            <div class="form-group">
-                <input type="password" class="form-control" :placeholder=" locale.inputPassword ">
-            </div>
+            <div class="form-group" :data-status="Verification.inputPassword.status">
+                <input type="password" class="form-control" :placeholder=" locale.inputPassword"  v-model="Verification.inputPassword.value"  @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')">
+                <span class="input-status"></span> 
+                <p class="status-info">{{locale.passwordInfo}}</p> 
+            </div> 
             <div class="checkbox">
                 <label v-on:click="checkboxToggle">
                     <span class="s-checkbox" type="checkbox" :class="{'active':isActive}"></span> {{ locale.rememberMe
@@ -73,33 +77,42 @@
         `,
     data: function() {
       return {
-        isActive: false
+        isActive: false,
+        Verification: {
+          inputAdress: { value: "", icon: 1, status: "" },
+          inputPassword: {
+            value: "",
+            icon: 1,
+            status: ""
+          }
+        },
+        slideResult:false,
+        isRemenber: false
       };
     },
     created() {
-      console.log(this.locale,this.lang)
-      console.log("registerwarp page");
     },
-    methods: {
-      goToPassword(){
-        this.$router.push({ path: "/forgetPassword" });
-      },
-      checkboxToggle: function() {
-        this.isActive = !this.isActive;
-      },
-      goToRegister() {
-        this.$router.push({ path: "/register" });
-      },
-      goToLogin() {
-        this.$router.push({ path: "/CounterfeitProduct" });
+    watch: {
+      Verification: {
+        handler(newValue, oldValue) {
+          for (let key in newValue) {
+            if (newValue.hasOwnProperty(key)) {
+              let element = newValue[key];
+              newValue[key].icon = Number(!this.required(newValue[key].value));
+            }
+          }
+        },
+        deep: true
       }
     },
-
-    props: ["model", "locale", "lang", "sharedLocale"],
     mounted() {
+      let _this = this;
       // $('#password-error').modal();
       // $('#register-error').modal();
-
+      if(this.getLocalStorage("user")){
+        this.Verification.inputAdress.value = this.getLocalStorage("user");
+        this.Verification.inputPassword.value = this.getLocalStorage("userPassword");
+      }
       $("#check-slide").slider({
         width: 320, // width
         height: 40, // height
@@ -114,9 +127,144 @@
         callback: function(result) {
           // 回调函数，true(成功),false(失败)
           if (result) $("#check-slide").addClass("success");
-          console.log(result);
+          _this.slideResult = result;
         }
       });
     },
+    methods: {
+      validateFunc(key) {
+        let value = this.Verification[key].value;
+        let status = "";
+        if (key == "inputAdress") {
+          status = this.required(value)
+            ? this.email(value)
+              ? "success"
+              : "false"
+            : "default";
+        } else if (key == "inputPassword") {
+          this.Verification[key].tips = 0;
+          status = this.required(value)
+            ? this.rangelength(value, [5, 25])
+              ? "success"
+              : "false"
+            : "default";
+          this.passwordInput(key);
+        }
+        key != "inputPassword" && (this.Verification[key].tips = 0);
+        this.Verification[key].status = status;
+      },
+      resetDefault(key) {
+        this.Verification[key].status == "default" &&
+          (this.Verification[key].status = "");
+        key == "inputPassword" &&
+          ((this.Verification[key].tips = 1), this.passwordInput(key));
+      },
+      goToPassword() {
+        this.$router.push({ path: "/password" });
+      },
+      email: function(value) {
+        if (value == null || this.trim(value) == "") return true;
+        return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+          value
+        );
+      },
+      required(value) {
+        return value.trim().length > 0;
+      },
+      passwordInput(key) {
+        let level = 0;
+        let strength1, strength2, strength3;
+        this.required(this.Verification[key].value) &&
+        this.rangelength(this.Verification[key].value, [5, 25])
+          ? ((strength1 = "success"), level++)
+          : (strength1 = "false");
+        this.required(this.Verification[key].value) &&
+        this.rangelength(this.Verification[key].value, [5, 25])
+          ? ((strength2 = "success"), level++)
+          : (strength2 = "false");
+        this.required(this.Verification[key].value) &&
+        this.rangelength(this.Verification[key].value, [5, 25])
+          ? ((strength3 = "success"), level++)
+          : (strength3 = "false");
+        this.Verification[key].strength = {
+          strength1: strength1,
+          strength2: strength2,
+          strength3: strength3
+        };
+        this.Verification[key].strength.level =
+          level < 2 ? "low" : level < 3 ? "center" : "high";
+      },
+      //字符串长度的范围
+      rangelength: function(value, param) {
+        if (value == null || this.trim(value) == "") return true;
+        return value.length >= param[0] && value.length <= param[1];
+      },
+      //密码
+      password: function(value, param) {
+        if (value == null || this.trim(value) == "") return true;
+        var rex = /^(?=.*\d+)(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[^A-Za-z0-9\s]+)\S{8,16}$/;
+        return rex.test(value);
+      },
+      trim(value) {
+        return value.replace(/(^\s*)|(\s*$)/g, "");
+      },
+      checkboxToggle: function() {
+        this.isActive = !this.isActive;
+        this.isRemenber = !this.isRemenber;
+        console.log(this.isRemenber);
+      },
+      goToRegister() {
+        this.$router.push({ path: "/register" });
+      },
+      goToLogin() {
+        if (
+          this.Verification.inputAdress.status == "success" &&
+          this.Verification.inputPassword.status == "success"
+        ) {
+          if (this.isRemenber) {
+            this.setLocalStorage("user", this.Verification.inputAdress.value);
+            this.setLocalStorage(
+              "userPassword",
+              this.Verification.inputPassword.value
+            );
+          }
+          if(this.slideResult){
+            this.$router.push({ path: "/CounterfeitProduct" });
+          }
+        }
+      },
+      //账号本地存储时效
+      setLocalStorage(key, value) {
+        var curtime = new Date().getTime(); // 获取当前时间 ，转换成JSON字符串序列
+        var valueDate = JSON.stringify({
+          val: value,
+          timer: curtime
+        });
+        console.log(valueDate);
+        localStorage.setItem(key, valueDate);
+      },
+      getLocalStorage(key) {
+        var exp = 60 * 60 * 24*1000*30; // 一天的秒数
+        if (localStorage.getItem(key)) {
+          var vals = localStorage.getItem(key); // 获取本地存储的值
+          var dataObj = JSON.parse(vals); // 将字符串转换成JSON对象
+          // 如果(当前时间 - 存储的元素在创建时候设置的时间) > 过期时间
+          var isTimed = new Date().getTime() - dataObj.timer > exp;
+          console.log(isTimed,new Date().getTime() - dataObj.timer)
+          if (isTimed) {
+            console.log("存储已过期");
+            localStorage.removeItem(key);
+            return null;
+          } else {
+            var newValue = dataObj.val;
+          }
+          return newValue;
+        } else {
+          return null;
+        }
+      },
+    },
+    props: ["model", "locale", "lang", "sharedLocale"],
+    
   });
 })();

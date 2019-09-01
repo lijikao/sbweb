@@ -33,12 +33,12 @@
                                     <div class="status-tips" :class="{'tipShow':Verification.inputPassword.tips}">
                                             <div class="strength">
                                                 <p>{{register.en.statusTips}}</p>
-                                                <div class="strength-box" :data-status="Verification.inputPassword.strength.level">
+                                                <div class="strength-box" :data-status="Verification.inputPassword.strength.level" v-model="level">
                                                     <span></span>
                                                     <span></span>
                                                     <span></span>
                                                 </div>
-                                                <p class="strength-info">{{register.en.passwordStatus}}</p>
+                                                <p class="strength-info">{{level}}</p>
                                             </div>
                                             <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1"><span></span>{{register.en.strengthStatus1}} </p>
                                             <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2"><span></span>{{register.en.strengthStatus2}} </p>
@@ -94,6 +94,7 @@
         },
         data: function () {
             return {
+                level:'low',
                 register: {
                     en: {
                         registerTitle: "Sign up",
@@ -119,8 +120,8 @@
                         inputVerificationBtn: 'Get code',
                         inputVerificationInfo: 'Username is 5-25 characters and needs to contain letters.',
                         signIn: 'Sign in',
-                        helpBlock: 'Don’t have an account?',
-                        helpBlockInfo: 'Sign up',
+                        helpBlock: 'Already have an account?',
+                        helpBlockInfo: 'login',
                         helpBlockLink: '#',
                     }
                 },
@@ -198,7 +199,8 @@
                         'strength2':strength2,
                         'strength3':strength3
                     }
-                    this.Verification[key].strength.level = level < 2 ? 'low' : (level < 3 ? 'center' :'high');
+                    this.Verification[key].strength.level = level < 2 ? 'low' : (level < 3 ? 'center' :'height');
+                    this.level = this.Verification[key].strength.level;
             },
             canClickGetCode(value){
                 this.Verification.inputMobile.isClick = this.required(value) && this.phone(value)

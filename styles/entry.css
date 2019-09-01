@@ -52,6 +52,7 @@
 }
 #login-form .form-group {
   margin-bottom: 20px;
+  position: relative;
 }
 #login-form .form-group input {
   font-size: 12px;
@@ -141,6 +142,7 @@
   border-radius: 2px;
   padding: 5px 9px;
   margin-bottom: 20px;
+  display: none;
 }
 #login-form .login-status-info span {
   width: 16px;
@@ -166,6 +168,7 @@
   border-radius: 2px;
   padding: 5px 9px;
   margin-bottom: 20px;
+  display: none;
 }
 #login-form .email-status-info p,
 #login-form .password-status-info p {
@@ -183,6 +186,39 @@
   letter-spacing: 0;
   line-height: 20px;
   text-decoration: underline;
+}
+#login-form .input-status {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  position: absolute;
+  right: -25px;
+  top: 14px;
+}
+#login-form .status-info {
+  font-size: 12px;
+  color: #cd454a;
+  line-height: 18px;
+  padding-top: 5px;
+  display: none;
+}
+#login-form .form-group[data-status="success"] .input-status {
+  background: url("../assets/entry/status-success.svg") center no-repeat;
+}
+#login-form .form-group[data-status="false"] .input-status {
+  background: url("../assets/entry/status-false.svg") center no-repeat;
+}
+#login-form .form-group[data-status="false"] .status-info {
+  display: block;
+}
+#login-form .form-group[data-status="false"] input {
+  border: 1px solid #cd454a;
+}
+#login-form .form-group[data-status="default"] input {
+  color: #cd454a;
+  border: 1px solid #cd454a;
 }
 .register-container {
   padding: 60px 170px;
@@ -415,10 +451,16 @@
   background: #cd454a;
 }
 #register-form .status-tips .strength .strength-box[data-status="center"] span:nth-child(n-1) {
-  background: #cd454a;
+  background: yellow;
+}
+#register-form .status-tips .strength .strength-box[data-status="center"] + .strength-info {
+  color: yellow;
 }
 #register-form .status-tips .strength .strength-box[data-status="height"] span {
-  background: #cd454a;
+  background: #24ccb8;
+}
+#register-form .status-tips .strength .strength-box[data-status="height"] + .strength-info {
+  color: #24ccb8;
 }
 #register-form .status-tips .strength .strength-info {
   font-size: 12px;
