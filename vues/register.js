@@ -5,34 +5,34 @@
     <div class="register-container">
         <div class="register-box">
                 <div id="register-form">
-                        <h2 class="login-title">{{ register.en.registerTitle }}</h2>
+                        <h2 class="login-title">{{ locale.registerTitle }}</h2>
                         <form>
                             <div class="form-group" :data-status="Verification.inputName.status">
                                 <em style="color: #CD454A;" v-if="Verification.inputName.icon">*</em>
-                                <input type="text" class="form-control" :placeholder="register.en.inputName" v-model="Verification.inputName.value" @blur="validateFunc('inputName')" @focus="resetDefault('inputName')">
+                                <input type="text" class="form-control" :placeholder="locale.inputName" v-model="Verification.inputName.value" @blur="validateFunc('inputName')" @focus="resetDefault('inputName')">
                                     <span class="input-status"></span>
-                                    <p class="status-info">{{ register.en.inputNameInfo }}</p>
+                                    <p class="status-info">{{ locale.inputNameInfo }}</p>
                             </div>
                             <div class="form-group" :data-status="Verification.inputAdress.status">
                                     <em style="color: #CD454A;" v-if="Verification.inputAdress.icon">*</em>
-                                    <input type="text" class="form-control"  :placeholder="register.en.inputAdress" v-model="Verification.inputAdress.value" @blur="validateFunc('inputAdress')" @focus="resetDefault('inputAdress')">
+                                    <input type="text" class="form-control"  :placeholder="locale.inputAdress" v-model="Verification.inputAdress.value" @blur="validateFunc('inputAdress')" @focus="resetDefault('inputAdress')">
                                     <span class="input-status"></span>
-                                    <p class="status-info">{{register.en.inputAdressInfo}}</p>
+                                    <p class="status-info">{{locale.inputAdressInfo}}</p>
                                 </div>
                                 <div class="form-group" :data-status="Verification.inputCompany.status">
                                         <em style="color: #CD454A;" v-if="Verification.inputCompany.icon">*</em>
-                                        <input type="text" class="form-control"  :placeholder="register.en.inputCompany"  v-model="Verification.inputCompany.value" @blur="validateFunc('inputCompany')" @focus="resetDefault('inputCompany')">
+                                        <input type="text" class="form-control"  :placeholder="locale.inputCompany"  v-model="Verification.inputCompany.value" @blur="validateFunc('inputCompany')" @focus="resetDefault('inputCompany')">
                                         <span class="input-status"></span>
-                                        <p class="status-info">{{register.en.inputCompanyInfo}}</p>
+                                        <p class="status-info">{{locale.inputCompanyInfo}}</p>
                                     </div>
                             <div class="form-group" :data-status="Verification.inputPassword.status">
                                     <em style="color: #CD454A;"  v-if="Verification.inputPassword.icon">*</em>
-                            <input type="password" class="form-control" id="registerPassword1" :placeholder="register.en.inputPassword" v-model="Verification.inputPassword.value"  @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')" @focus="resetDefault('inputPassword')">
+                            <input type="password" class="form-control" id="registerPassword1" :placeholder="locale.inputPassword" v-model="Verification.inputPassword.value"  @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')" @focus="resetDefault('inputPassword')">
                                     <span class="input-status"></span>
-                                    <p class="status-info">{{register.en.inputPasswordInfo}}</p>
+                                    <p class="status-info">{{locale.inputPasswordInfo}}</p>
                                     <div class="status-tips" :class="{'tipShow':Verification.inputPassword.tips}">
                                             <div class="strength">
-                                                <p>{{register.en.statusTips}}</p>
+                                                <p>{{locale.statusTips}}</p>
                                                 <div class="strength-box" :data-status="Verification.inputPassword.strength.level" v-model="level">
                                                     <span></span>
                                                     <span></span>
@@ -40,34 +40,34 @@
                                                 </div>
                                                 <p class="strength-info">{{level}}</p>
                                             </div>
-                                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1"><span></span>{{register.en.strengthStatus1}} </p>
-                                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2"><span></span>{{register.en.strengthStatus2}} </p>
-                                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength3"><span></span>{{register.en.strengthStatus3}} </p>
+                                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1"><span></span>{{locale.strengthStatus1}} </p>
+                                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2"><span></span>{{locale.strengthStatus2}} </p>
+                                            <p class="strength-status" :data-status="Verification.inputPassword.strength.strength3"><span></span>{{locale.strengthStatus3}} </p>
                                         </div>
                             </div>
                             <div class="form-group" :data-status="Verification.inputConfirm.status">
                                     <em style="color: #CD454A;" v-if="Verification.inputConfirm.icon">*</em>
-                                    <input type="password" class="form-control" :placeholder="register.en.inputConfirm" v-model="Verification.inputConfirm.value" @blur="validateFunc('inputConfirm')" @focus="resetDefault('inputConfirm')">
+                                    <input type="password" class="form-control" :placeholder="locale.inputConfirm" v-model="Verification.inputConfirm.value" @blur="validateFunc('inputConfirm')" @focus="resetDefault('inputConfirm')">
                                     <span class="input-status"></span>
-                                    <p class="status-info">{{register.en.inputConfirmInfo}}</p>
+                                    <p class="status-info">{{locale.inputConfirmInfo}}</p>
                             </div>
                             <div class="form-group" :data-status="Verification.inputMobile.status">
                                     <div class="input-group">
-                                        <div class="input-group-addon">{{register.en.inputNumberMobile}}</div>
-                                        <input type="text" class="form-control"  :placeholder="register.en.inputMobile" v-model="Verification.inputMobile.value" @keyup="canClickGetCode(Verification.inputMobile.value)" @blur="validateFunc('inputMobile')" @focus="resetDefault('inputMobile')">
+                                        <div class="input-group-addon">{{locale.inputNumberMobile}}</div>
+                                        <input type="text" class="form-control"  :placeholder="locale.inputMobile" v-model="Verification.inputMobile.value" @keyup="canClickGetCode(Verification.inputMobile.value)" @blur="validateFunc('inputMobile')" @focus="resetDefault('inputMobile')">
                                     </div>
                                         <span class="input-status"></span>
-                                        <p class="status-info">{{register.en.inputMobileInfo}}</p>
+                                        <p class="status-info">{{locale.inputMobileInfo}}</p>
                             </div>
                             <div class="form-group code-verification" :data-status="Verification.inputVerification.status">
-                                <input type="text" class="form-control"  :placeholder="register.en.inputVerification" v-model="Verification.inputVerification.value" @blur="validateFunc('inputVerification')" @focus="resetDefault('inputVerification')">
-                                <button type="button" class="btn btn-default">{{register.en.inputVerificationBtn}}</button>
+                                <input type="text" class="form-control"  :placeholder="locale.inputVerification" v-model="Verification.inputVerification.value" @blur="validateFunc('inputVerification')" @focus="resetDefault('inputVerification')">
+                                <button type="button" class="btn btn-default">{{locale.inputVerificationBtn}}</button>
                                 <span class="input-status"></span>
-                                <p class="status-info">{{register.en.inputVerificationInfo}}</p>
+                                <p class="status-info">{{locale.inputVerificationInfo}}</p>
                             </div>
                             
-                            <button type="submit" class=" submit btn btn-default" @click="registerr">{{ register.en.signIn }}</button>
-                            <p class="help-block">{{ register.en.helpBlock }}<a href="#" @click="goToLoginPage">{{ register.en.helpBlockInfo }}</a>  </p>
+                            <button type="submit" class=" submit btn btn-default" @click="registerr">{{ locale.signIn }}</button>
+                            <p class="help-block">{{ locale.helpBlock }}<a href="#" @click="goToLoginPage">{{ locale.helpBlockInfo }}</a>  </p>
                         </form>
                 </div>
         </div>
@@ -88,43 +88,13 @@
         </div>
 </div>
     `,
-        props: ['model', 'locale'],
+    props: ["model", "locale", "lang", "sharedLocale"],
         created() {
             console.log('login page')
         },
         data: function () {
             return {
                 level:'low',
-                register: {
-                    en: {
-                        registerTitle: "Sign up",
-                        inputName: 'Account name',
-                        inputNameInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputAdress: 'Email address',
-                        inputAdressInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputCompany: 'Company name',
-                        inputCompanyInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputPassword: 'Password',
-                        inputPasswordInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        statusTips: 'Strength',
-                        passwordStatus: 'Low',
-                        strengthStatus1: '5 to 25 charcters',
-                        strengthStatus2: 'Contains only letters,numbers and symbols ',
-                        strengthStatus3: 'Contains at least two of the following: letters,numbers,symbols.',
-                        inputConfirm: 'Password',
-                        inputConfirmInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputMobile: 'Mobile number',
-                        inputNumberMobile: '+86',
-                        inputMobileInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputVerification: 'Verification code',
-                        inputVerificationBtn: 'Get code',
-                        inputVerificationInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        signIn: 'Sign in',
-                        helpBlock: 'Already have an account?',
-                        helpBlockInfo: 'login',
-                        helpBlockLink: '#',
-                    }
-                },
                 Verification:{
                     inputName:{value:'', icon:1,status: ''},
                     inputCompany:{value:'', icon:1,status: ''},
@@ -151,6 +121,37 @@
         },
         methods: {
             registerr(){
+                // user/signup
+
+                let url = `${g_BACKEND_API_BASE_URL}/users/signup` ;
+                let data = {
+                  "email": "844318239@qq.com",
+                  "password": "12345634534578888999",
+                  "telnunm": +86-123-456-7890,
+                  "company":"我的公司",
+                  "username":'ssssss'
+                }
+                console.log(data);
+
+                
+                $.ajax(url, {
+                  type: 'POST',
+                  data:data,
+                  success: function(data){
+                    if (this.isRemenber) {
+                      this.setLocalStorage("user", this.Verification.inputAdress.value);
+                      this.setLocalStorage(
+                        "userPassword",
+                        this.Verification.inputPassword.value
+                      );
+                    }
+                    this.$router.push({ path: "/CounterfeitProduct" });
+                  },
+                  error: function(){
+                    console.log(1)
+                  }
+                });
+
                 $('#register').modal('toggle');
             },
             modalGoToLoginPage(){

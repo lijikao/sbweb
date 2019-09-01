@@ -4,10 +4,10 @@
         <div id="content">
         <div class="password-container">
             <div class="password-top" v-if="isforgetPassword">
-                <h2 class="password-title">{{ password.en.passwordTitle }}</h2>
+                <h2 class="password-title">{{ locale.passwordTitle }}</h2>
             </div>
             <div class="password-top" v-if="isresetPassword">
-            <h2 class="password-title">{{ password.en.resetPasswordTitle }}</h2>
+            <h2 class="password-title">{{ locale.resetPasswordTitle }}</h2>
             </div>
             <div class="password-box" v-if="isforgetPassword">
                 <div id="password-form">
@@ -17,11 +17,11 @@
                         </div>
                         <div class="form-group" :data-status="Verification.inputCompany.status">
                             <em style="color: #CD454A;" v-if="Verification.inputCompany.icon">*</em>
-                            <input type="text" class="form-control" :placeholder="password.en.inputCompany"
+                            <input type="text" class="form-control" :placeholder="locale.inputCompany"
                                    v-model="Verification.inputCompany.value" @blur="validateFunc('inputCompany')"
                                    @focus="resetDefault('inputCompany')">
                             <span class="input-status"></span>
-                            <p class="status-info">{{password.en.inputCompanyInfo}}</p>
+                            <p class="status-info">{{locale.inputCompanyInfo}}</p>
                         </div>
                         <button type="submit" class=" submit btn btn-default" @click="forgetpassword">确认找回</button>
                     </form>
@@ -36,14 +36,14 @@
                     <div class="form-group" :data-status="Verification.inputPassword.status">
                         <em style="color: #CD454A;" v-if="Verification.inputPassword.icon">*</em>
                         <input type="password" class="form-control" id="passwordPassword1"
-                               :placeholder="password.en.inputPassword" v-model="Verification.inputPassword.value"
+                               :placeholder="locale.inputPassword" v-model="Verification.inputPassword.value"
                                @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')"
                                @focus="resetDefault('inputPassword')">
                         <span class="input-status"></span>
-                        <p class="status-info">{{password.en.inputPasswordInfo}}</p>
+                        <p class="status-info">{{locale.inputPasswordInfo}}</p>
                         <div class="status-tips" :class="{'tipShow':Verification.inputPassword.tips}">
                             <div class="strength">
-                                <p>{{password.en.statusTips}}</p>
+                                <p>{{locale.statusTips}}</p>
                                 <div class="strength-box" :data-status="Verification.inputPassword.strength.level" v-model="level">
                                         <span></span>
                                         <span></span>
@@ -52,20 +52,20 @@
                                 <p class="strength-info">{{level}}</p>
                             </div>
                             <p class="strength-status" :data-status="Verification.inputPassword.strength.strength1">
-                                <span></span>{{password.en.strengthStatus1}} </p>
+                                <span></span>{{locale.strengthStatus1}} </p>
                             <p class="strength-status" :data-status="Verification.inputPassword.strength.strength2">
-                                <span></span>{{password.en.strengthStatus2}} </p>
+                                <span></span>{{locale.strengthStatus2}} </p>
                             <p class="strength-status" :data-status="Verification.inputPassword.strength.strength3">
-                                <span></span>{{password.en.strengthStatus3}} </p>
+                                <span></span>{{locale.strengthStatus3}} </p>
                         </div>
                     </div>
                     <div class="form-group" :data-status="Verification.inputConfirm.status">
                         <em style="color: #CD454A;" v-if="Verification.inputConfirm.icon">*</em>
-                        <input type="password" class="form-control" :placeholder="password.en.inputConfirm"
+                        <input type="password" class="form-control" :placeholder="locale.inputConfirm"
                                v-model="Verification.inputConfirm.value" @blur="validateFunc('inputConfirm')"
                                @focus="resetDefault('inputConfirm')">
                         <span class="input-status"></span>
-                        <p class="status-info">{{password.en.inputConfirmInfo}}</p>
+                        <p class="status-info">{{locale.inputConfirmInfo}}</p>
                     </div>
 
 
@@ -105,38 +105,10 @@
         },
         data: function () {
             return {
+                level:'low',
                 isforgetPassword:true,
                 isresetPassword:false,
                 isvisible:true,
-                password: {
-                    en: {
-                        passwordTitle: "Forget Password",
-                        resetPasswordTitle: "Reset Password",
-                        inputName: 'Account name',
-                        inputNameInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputAdress: 'Email address',
-                        inputAdressInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputCompany: 'Company name',
-                        inputCompanyInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputPassword: 'Password',
-                        inputPasswordInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        statusTips: 'Strength',
-                        passwordStatus: 'Low',
-                        strengthStatus1: '5 to 25 charcters',
-                        strengthStatus2: 'Contains only letters,numbers and symbols ',
-                        strengthStatus3: 'Contains at least two of the following: letters,numbers,symbols.',
-                        inputConfirm: 'Password',
-                        inputConfirmInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputMobile: 'Mobile number',
-                        inputNumberMobile: '+86',
-                        inputMobileInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        inputVerification: 'Verification code',
-                        inputVerificationBtn: 'Get code',
-                        inputVerificationInfo: 'Username is 5-25 characters and needs to contain letters.',
-                        signIn: '确认找回',
-                        helpBlock: 'Don’t have an account?',
-                    }
-                },
                 Verification:{
                     inputName:{value:'', icon:1,status: ''},
                     inputCompany:{value:'', icon:1,status: ''},

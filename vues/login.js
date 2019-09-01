@@ -11,25 +11,22 @@
     <div id="login-form">
         <h2 class="login-title">{{ locale.loginTitle }}</h2>
         <div class="password-status-info">
-            <p>重置密码尚未激活，请<a href="#">查看激活邮件</a>，激活后重新登录</p>
+            <p>{{ locale.passwordStatusInfo3 }}<a href="#">{{ locale.passwordStatusInfo }}</a>{{ locale.passwordStatusInfo2 }}</p>
         </div>
         <div class="email-status-info">
-            <p>邮箱地址尚未激活，请<a href="#">查看激活邮件</a>，激活后重新登录</p>
+            <p>{{ locale.emailStatusInfo3 }}<a href="#">{{ locale.emailStatusInfo }}</a>{{ locale.emailStatusInfo2 }}</p>
         </div>
         <div class="login-status-info">
             <span></span>
             <p>{{ locale.loginStatusinfo }}</p>
         </div>
         <form>
-            <div class="form-group" :data-status="Verification.inputAdress.status">
-                <input type="text" class="form-control" :placeholder=" locale.inputName " v-model="Verification.inputAdress.value" @blur="validateFunc('inputAdress')" @focus="resetDefault('inputAdress')">
-                <span class="input-status"></span> 
-                <p class="status-info">{{locale.inputAdressInfo}}</p> 
+            <div class="form-group" >
+                <input type="text" class="form-control" :placeholder=" locale.inputName " v-model="Verification.inputAdress.value" >
+               
             </div>
-            <div class="form-group" :data-status="Verification.inputPassword.status">
-                <input type="password" class="form-control" :placeholder=" locale.inputPassword"  v-model="Verification.inputPassword.value"  @keyup="passwordInput('inputPassword')" @blur="validateFunc('inputPassword')">
-                <span class="input-status"></span> 
-                <p class="status-info">{{locale.passwordInfo}}</p> 
+            <div class="form-group" >
+                <input type="password" class="form-control" :placeholder=" locale.inputPassword"  v-model="Verification.inputPassword.value"  >
             </div> 
             <div class="checkbox">
                 <label v-on:click="checkboxToggle">
@@ -52,10 +49,23 @@
         <div class="modal-content">
             <div class="modal-body">
                 <span class="modal-success-icon"></span>
-                <h3>邮箱激活链接已过期</h3>
+                <h3>{{ locale.registerError }}</h3>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" @click="">重新注册</button>
+                <button type="button" class="btn btn-primary" @click="">{{ locale.registerErrorBtn }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="login-success" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="modal-success-icon"></span>
+                <h3>{{ locale.loginSuccessInfo }}</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @click="">{{ locale.loginSuccessInfo2 }}</button>
             </div>
         </div>
     </div>
@@ -65,10 +75,10 @@
     <div class="modal-content">
         <div class="modal-body">
             <span class="modal-success-icon"></span>
-            <h3>设置密码验证邮件已失效</h3>
+            <h3>{{ locale.passwordError }}</h3>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" @click="">重新填写</button>
+            <button type="button" class="btn btn-primary" @click="">{{ locale.passwordErrorBtn }}</button>
         </div>
     </div>
 </div>
@@ -217,20 +227,39 @@
         this.$router.push({ path: "/register" });
       },
       goToLogin() {
-        if (
-          this.Verification.inputAdress.status == "success" &&
-          this.Verification.inputPassword.status == "success"
-        ) {
-          if (this.isRemenber) {
-            this.setLocalStorage("user", this.Verification.inputAdress.value);
-            this.setLocalStorage(
-              "userPassword",
-              this.Verification.inputPassword.value
-            );
+        if(this.slideResult){
+          let url = `${g_BACKEND_API_BASE_URL}/users/login` ;
+          let data = {
+            "email": "844318239@qq.com",
+            "password": "1234563458999",
+            "expire": 14400
           }
-          if(this.slideResult){
-            this.$router.push({ path: "/CounterfeitProduct" });
-          }
+          // console.log(data);
+          
+          $.ajax({
+            url:url,
+            type: 'POST',
+            dataType: "json",  
+            contentType: "application/json" ,
+            data:{
+              "email": "844318239@qq.com",
+              "password": "1234563458999",
+              "expire": 14400
+            },
+            success: function(data){
+              if (this.isRemenber) {
+                this.setLocalStorage("user", this.Verification.inputAdress.value);
+                this.setLocalStorage(
+                  "userPassword",
+                  this.Verification.inputPassword.value
+                );
+              }
+              // this.$router.push({ path: "/CounterfeitProduct" });
+            },
+            error: function(){
+              console.log(1)
+            }
+          });
         }
       },
       //账号本地存储时效
